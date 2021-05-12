@@ -84,7 +84,8 @@ namespace Contract_Management
         ApprovedByHSE,
         ApprovedBySecurity,
         PassIssued,
-        ApprovedByHoD
+        ApprovedByHoD,
+        Approved
     }
 
 }
