@@ -17,13 +17,15 @@
     <AssemblyName>Contract_Management</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -208,6 +210,9 @@
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\ThirdPartyController.cs" />
     <Compile Include="Custom_Classes\CustomValidations.cs" />
+    <Compile Include="Data\ActivityMaster.cs">
+      <DependentUpon>CMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Contractor.cs">
       <DependentUpon>CMSModel.tt</DependentUpon>
     </Compile>
@@ -259,13 +264,7 @@
     <Compile Include="Data\Job.cs">
       <DependentUpon>CMSModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\JOB1.cs">
-      <DependentUpon>CMSModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Data\Job_Arc.cs">
-      <DependentUpon>CMSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\JOB_ARC1.cs">
       <DependentUpon>CMSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Mapping\DomainToDataMapping.cs" />
@@ -371,6 +370,7 @@
     <Content Include="Views\ThirdParty\ContractorDetails.cshtml" />
     <Content Include="Views\ThirdParty\Employee.cshtml" />
     <Content Include="Views\EIC\ContractorDetails.cshtml" />
+    <Content Include="Views\ThirdParty\JobDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

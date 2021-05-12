@@ -1,5 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ActivityMaster">
+    <Key>
+      <PropertyRef Name="ActivityId" />
+    </Key>
+    <Property Name="ActivityId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ActivityName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ActionName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Role" Type="nvarchar" MaxLength="50" />
+    <Property Name="Actioner" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDepartment" Type="bit" />
+  </EntityType>
   <EntityType Name="Contractor">
     <Key>
       <PropertyRef Name="VENDOR_CODE" />
@@ -350,66 +361,6 @@
     <Property Name="PO_NUMBER" Type="varchar" MaxLength="25" Nullable="false" />
     <Property Name="CREATED_DATE" Type="datetime" />
   </EntityType>
-  <EntityType Name="JOB1">
-    <Key>
-      <PropertyRef Name="COMP_ID" />
-      <PropertyRef Name="JOB_ID" />
-    </Key>
-    <Property Name="COMP_ID" Type="int" Nullable="false" />
-    <Property Name="JOB_ID" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="ARC" Type="bit" />
-    <Property Name="ARC_ID" Type="varchar" MaxLength="20" />
-    <Property Name="JOB_PREV_ID" Type="varchar" MaxLength="20" />
-    <Property Name="DEPT_ID" Type="int" />
-    <Property Name="DESCRIPTION" Type="varchar" MaxLength="125" Nullable="false" />
-    <Property Name="AREA" Type="varchar" MaxLength="100" />
-    <Property Name="WARRANTY_UPTO" Type="date" />
-    <Property Name="CONT_ID" Type="varchar" MaxLength="25" Nullable="false" />
-    <Property Name="NO_WORKERS" Type="smallint" Nullable="false" />
-    <Property Name="COMPLETED" Type="date" />
-    <Property Name="WORKERS_LICENSE_PASS" Type="varchar" MaxLength="50" />
-    <Property Name="WL_PASS_FROM" Type="date" />
-    <Property Name="WL_PASS_TO" Type="date" />
-    <Property Name="ISWL_LICENSE_CLOSED" Type="bit" />
-    <Property Name="ISMW" Type="bit" />
-    <Property Name="ISMW_LICENSE_PASS" Type="varchar" MaxLength="50" />
-    <Property Name="ISMW_FROM" Type="date" />
-    <Property Name="ISMW_TO" Type="date" />
-    <Property Name="BLOCK" Type="bit" />
-    <Property Name="BLOCK_REMARKS" Type="varchar" MaxLength="100" />
-    <Property Name="CREATED_BY" Type="varchar" MaxLength="25" />
-    <Property Name="CREATED_ON" Type="date" Nullable="false" />
-    <Property Name="DELETED_BY" Type="varchar" MaxLength="25" />
-    <Property Name="DELETED_ON" Type="datetime" />
-    <Property Name="PASS_COUNT" Type="int" />
-    <Property Name="PASS_RETURNED" Type="int" />
-    <Property Name="ISTEMP_JOBID" Type="bit" />
-    <Property Name="SUB_CONT_REMARKS" Type="varchar(max)" />
-    <Property Name="STAFF" Type="varchar" MaxLength="50" />
-    <Property Name="ISHOUSE" Type="bit" />
-    <Property Name="ONLYEX" Type="bit" />
-    <Property Name="SEC_REMARKS" Type="varchar" MaxLength="250" />
-  </EntityType>
-  <EntityType Name="JOB_ARC1">
-    <Key>
-      <PropertyRef Name="COMP_ID" />
-      <PropertyRef Name="ARC_ID" />
-    </Key>
-    <Property Name="COMP_ID" Type="int" Nullable="false" />
-    <Property Name="ARC_ID" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="DEPT_ID" Type="int" />
-    <Property Name="CONT_ID" Type="varchar" MaxLength="25" Nullable="false" />
-    <Property Name="JOB_NAME" Type="varchar" MaxLength="50" />
-    <Property Name="ARC_DATE" Type="date" />
-    <Property Name="ARC_DETAILS" Type="varchar" MaxLength="150" Nullable="false" />
-    <Property Name="ARC_FROM" Type="date" Nullable="false" />
-    <Property Name="ARC_TO" Type="date" Nullable="false" />
-    <Property Name="DEACTIVATED_ON" Type="date" />
-    <Property Name="CREATED_BY" Type="varchar" MaxLength="25" Nullable="false" />
-    <Property Name="CREATED_ON" Type="date" Nullable="false" />
-    <Property Name="DELETED_BY" Type="varchar" MaxLength="25" />
-    <Property Name="DELETED_ON" Type="date" />
-  </EntityType>
   <Association Name="FK_Contractor_vendor_details">
     <End Role="vendor_details" Type="Self.vendor_details" Multiplicity="1" />
     <End Role="Contractor" Type="Self.Contractor" Multiplicity="0..1" />
@@ -435,6 +386,7 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="CMSModelStoreContainer">
+    <EntitySet Name="ActivityMaster" EntityType="Self.ActivityMaster" Schema="CMS" store:Type="Tables" />
     <EntitySet Name="Contractor" EntityType="Self.Contractor" Schema="CMS" store:Type="Tables" />
     <EntitySet Name="Department" EntityType="Self.Department" Schema="CMS" store:Type="Tables" />
     <EntitySet Name="Doc_Master" EntityType="Self.Doc_Master" Schema="CMS" store:Type="Tables" />
@@ -458,8 +410,6 @@
     <EntitySet Name="vendor_details" EntityType="Self.vendor_details" Schema="CMS" store:Type="Tables" />
     <EntitySet Name="Vendor_Doc" EntityType="Self.Vendor_Doc" Schema="CMS" store:Type="Tables" />
     <EntitySet Name="Vendor_PO" EntityType="Self.Vendor_PO" Schema="CMS" store:Type="Tables" />
-    <EntitySet Name="JOB1" EntityType="Self.JOB1" Schema="dbo" Table="JOB" store:Type="Tables" />
-    <EntitySet Name="JOB_ARC1" EntityType="Self.JOB_ARC1" Schema="dbo" Table="JOB_ARC" store:Type="Tables" />
     <AssociationSet Name="FK_Contractor_vendor_details" Association="Self.FK_Contractor_vendor_details">
       <End Role="vendor_details" EntitySet="vendor_details" />
       <End Role="Contractor" EntitySet="Contractor" />

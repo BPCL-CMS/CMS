@@ -31,8 +31,8 @@ namespace Contract_Management.Data
         public Nullable<bool> IS_REGISTERED { get; set; }
         public Nullable<System.DateTime> CREATED_DATE { get; set; }
     
+        public virtual Contractor Contractor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vendor_PO> Vendor_PO { get; set; }
-        public virtual Contractor Contractor { get; set; }
     }
 }

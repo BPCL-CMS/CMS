@@ -73,7 +73,6 @@ namespace Contract_Management
         Approved,
         Send_Back,
         Rejected,
-        Approved1
     }
     enum ActivityMaster : int
     {
