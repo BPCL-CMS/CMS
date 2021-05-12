@@ -25,30 +25,29 @@ namespace Contract_Management.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Department> Departments { get; set; }
-        public virtual DbSet<vendor_details> vendor_details { get; set; }
-        public virtual DbSet<Vendor_PO> Vendor_PO { get; set; }
-        public virtual DbSet<Job_Arc> Job_Arc { get; set; }
-        public virtual DbSet<Doc_Master> Doc_Master { get; set; }
-        public virtual DbSet<Employee_ESIExemption> Employee_ESIExemption { get; set; }
-        public virtual DbSet<Employee_PFExemption> Employee_PFExemption { get; set; }
-        public virtual DbSet<Employee_MaritalStatus> Employee_MaritalStatus { get; set; }
-        public virtual DbSet<Employee_Relations> Employee_Relations { get; set; }
-        public virtual DbSet<Employee_Type> Employee_Type { get; set; }
-        public virtual DbSet<Employee_Servicebook> Employee_Servicebook { get; set; }
-        public virtual DbSet<Job> Jobs { get; set; }
-        public virtual DbSet<JOB1> JOB1 { get; set; }
-        public virtual DbSet<JOB_ARC1> JOB_ARC1 { get; set; }
-        public virtual DbSet<Employee_Doc> Employee_Doc { get; set; }
-        public virtual DbSet<Vendor_Doc> Vendor_Doc { get; set; }
-        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<ActivityMaster> ActivityMasters { get; set; }
         public virtual DbSet<Contractor> Contractors { get; set; }
+        public virtual DbSet<Department> Departments { get; set; }
+        public virtual DbSet<Doc_Master> Doc_Master { get; set; }
         public virtual DbSet<DocumentType> DocumentTypes { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Employee_Doc> Employee_Doc { get; set; }
+        public virtual DbSet<Employee_ESIExemption> Employee_ESIExemption { get; set; }
+        public virtual DbSet<Employee_MaritalStatus> Employee_MaritalStatus { get; set; }
+        public virtual DbSet<Employee_PFExemption> Employee_PFExemption { get; set; }
+        public virtual DbSet<Employee_Relations> Employee_Relations { get; set; }
+        public virtual DbSet<Employee_Servicebook> Employee_Servicebook { get; set; }
+        public virtual DbSet<Employee_Type> Employee_Type { get; set; }
         public virtual DbSet<Gate> Gates { get; set; }
+        public virtual DbSet<Job> Jobs { get; set; }
+        public virtual DbSet<Job_Arc> Job_Arc { get; set; }
+        public virtual DbSet<Menu> Menus { get; set; }
         public virtual DbSet<PassType> PassTypes { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<UserDetail> UserDetails { get; set; }
-        public virtual DbSet<Menu> Menus { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
+        public virtual DbSet<vendor_details> vendor_details { get; set; }
+        public virtual DbSet<Vendor_Doc> Vendor_Doc { get; set; }
+        public virtual DbSet<Vendor_PO> Vendor_PO { get; set; }
     }
 }

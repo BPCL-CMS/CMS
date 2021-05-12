@@ -12,11 +12,13 @@ namespace Contract_Management.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class ActivityMaster
     {
-        public long RoleId { get; set; }
-        public string RoleName { get; set; }
-        public string DefaultPageUrl { get; set; }
-        public bool IsActive { get; set; }
+        public long ActivityId { get; set; }
+        public string ActivityName { get; set; }
+        public string ActionName { get; set; }
+        public string Role { get; set; }
+        public string Actioner { get; set; }
+        public Nullable<bool> IsDepartment { get; set; }
     }
 }

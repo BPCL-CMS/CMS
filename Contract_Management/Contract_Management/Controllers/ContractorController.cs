@@ -554,18 +554,18 @@ namespace Contract_Management.Controllers
                     if (status == "Approve")
                     {
                         job.STATUS = (int)STATUS.Approved;
-                        JOB1 model = new JOB1()
+                        Job model = new Job()
                         {
-                            COMP_ID = 1,
-                            JOB_ID = job.PO_NUM,
+                            //COMP_ID = 1,
+                            JOB_ID = Convert.ToInt32(job.PO_NUM),
                             ARC = job.ARC,
-                            ARC_ID = job_arc.ARC_ID.ToString(),
+                            ARC_NO = job_arc.ARC_ID.ToString(),
                             DEPT_ID = job.DEPT_ID,
-                            DESCRIPTION = job_arc.DESCRIPTION,
+                            //Des = job_arc.DESCRIPTION,
                             AREA = job.AREA,
                             CONT_ID = job.CONT_ID,
                             NO_WORKERS = job.NO_WORKERS,
-                            COMPLETED = job.COMPLETED_DATE,
+                            COMPLETED_DATE = job.COMPLETED_DATE,
                             WORKERS_LICENSE_PASS = job.WORKERS_LICENSE_PASS,
                             WL_PASS_FROM = job.WL_PASS_FROM,
                             WL_PASS_TO = job.WL_PASS_TO,
@@ -580,31 +580,31 @@ namespace Contract_Management.Controllers
                             CREATED_ON = job.CREATED_ON,
                             DELETED_BY = job.DELETED_BY,
                             DELETED_ON = job.DELETED_ON,
-                            PASS_COUNT = job.TOTAL_PASS_COUNT,
-                            STAFF = job.STAFF_PASS,
-                            ONLYEX = job.ONLY_EXCEMPTION,
+                            ISMW_PASS_COUNT = job.TOTAL_PASS_COUNT,
+                            STAFF_PASS = job.STAFF_PASS,
+                            ONLY_EXCEMPTION = job.ONLY_EXCEMPTION,
                             SEC_REMARKS = job.SEC_REMARKS,
 
                         };
-                        db.JOB1.Add(model);
+                        db.Jobs.Add(model);
                         db.SaveChanges();
 
-                        JOB_ARC1 model1 = new JOB_ARC1()
+                        Job_Arc model1 = new Job_Arc()
                         {
-                            COMP_ID = 1,
-                            ARC_ID = job_arc.ARC_ID.ToString(),
-                            DEPT_ID = job.DEPT_ID,
-                            CONT_ID = job.CONT_ID,
-                            JOB_NAME = job.JOB_NAME,
-                            ARC_DATE = job_arc.ARC_DATE,
-                            ARC_DETAILS = job_arc.DESCRIPTION,
-                            ARC_FROM = Convert.ToDateTime(job_arc.SCHEDULE_FROM),
-                            ARC_TO = Convert.ToDateTime(job_arc.SCHEDULE_TO),
+                            //COMP_ID = 1,
+                            ARC_ID = Convert.ToInt32(job_arc.ARC_ID),
+                            //DEPT_ID = job.DEPT_ID,
+                            //CONT_ID = job.CONT_ID,
+                            //JOB_NAME = job.JOB_NAME,
+                            //ARC_DATE = job_arc.ARC_DATE,
+                            //ARC_DETAILS = job_arc.DESCRIPTION,
+                            //ARC_FROM = Convert.ToDateTime(job_arc.SCHEDULE_FROM),
+                            //ARC_TO = Convert.ToDateTime(job_arc.SCHEDULE_TO),
                             DEACTIVATED_ON = job_arc.DEACTIVATED_ON,
                             CREATED_BY = job_arc.CREATED_BY,
                             CREATED_ON = Convert.ToDateTime(job_arc.CREATED_ON),
                         };
-                        db.JOB_ARC1.Add(model1);
+                        db.Job_Arc.Add(model1);
                         db.SaveChanges();
 
                         db.SaveChanges();
