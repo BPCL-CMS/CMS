@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/Repo/v15/.suo
+/.vs
+/Contract_Management/Contract_Management/obj/Debug/Contract_Management.csproj.CoreCompileInputs.cache
+/Contract_Management/Contract_Management/obj/Debug/Contract_Management.csprojAssemblyReference.cache
+/Contract_Management/.vs/Contract_Management/v15/Server/sqlite3
