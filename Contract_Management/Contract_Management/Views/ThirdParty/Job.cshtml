@@ -96,7 +96,7 @@
                 $("#EmpTable").empty();
                 for (var i = 0; i < result.length; i++) {
                     var ID = result[i]["JOB_ID"];
-                    var $newLinkTarget = '@Url.Action("ContractorDetails", "ThirdParty")?JOB_ID=' + ID + '';
+                    var $newLinkTarget = '@Url.Action("JobDetails", "ThirdParty")?JOB_ID=' + ID + '';
                     var ss = "";
 
                     $("#EmpTable").append("<tr id='tr_" + result[i]["JOB_ID"] + "'>" +
