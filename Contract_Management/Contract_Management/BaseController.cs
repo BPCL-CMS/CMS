@@ -72,7 +72,8 @@ namespace Contract_Management
         Approved_By_ThirdParty,
         Approved,
         Send_Back,
-        Rejected
+        Rejected,
+        Approved1
     }
     enum ActivityMaster : int
     {
@@ -85,7 +86,7 @@ namespace Contract_Management
         ApprovedBySecurity,
         PassIssued,
         ApprovedByHoD,
-        Approved
+        
     }
 
 }
