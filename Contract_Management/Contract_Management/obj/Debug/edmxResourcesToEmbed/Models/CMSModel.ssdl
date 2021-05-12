@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="vendor_details">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VENDOR_CODE" Type="bigint" />
+    <Property Name="VENDOR_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="PO_NUMBER" Type="nvarchar" MaxLength="50" />
+    <Property Name="MOBILE_NO" Type="varchar" MaxLength="15" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+    <Property Name="PASWORD" Type="varchar(max)" />
+    <Property Name="OTP" Type="varchar" MaxLength="10" />
+    <Property Name="IS_ACTIVE" Type="bit" />
+    <Property Name="IS_REGISTERED" Type="bit" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="CMSModelStoreContainer">
+    <EntitySet Name="vendor_details" EntityType="Self.vendor_details" Schema="CMS" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,125 @@
+﻿@model Contract_Management.Data.Contractor
+@{
+    ViewBag.Title = "VendorPartial";
+    Layout = null;
+}
+@using (Html.BeginForm("SaveContractor", "Contractor", FormMethod.Post))
+{
+
+    if (Model != null)
+    {
+        <div class="col-lg-6">
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">VENDOR</label>
+                <div class="col-sm-8">
+                    <input class="form-control" placeholder="Vendor" id="VENDOR" name="VENDOR" value="@Model.CONTRACTOR_NAME">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">ADDRESS</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" rows="3" name="ADDRESS" id="ADDRESS">@Model.CONTRACTOR_ADDRESS</textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">CITY</label>
+                <div class="col-sm-8">
+                    <input class="form-control" placeholder="City" name="CITY" id="CITY" value="@Model.CITY">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">STATE</label>
+                <div class="col-sm-8">
+                    <input class="form-control" placeholder="State" name="STATE" id="STATE" value="@Model.STATE">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">PINCODE</label>
+                <div class="col-sm-8">
+                    <input class="form-control" placeholder="ZIP/PIN Code" name="PINCODE" id="PINCODE" value="@Model.PINCODE">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">PAN</label>
+                <div class="col-sm-8">
+                    <input class="form-control" placeholder="PAN/LIN" name="PAN" id="PAN" value="@Model.PAN">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">GST</label>
+                <div class="col-sm-8">
+                    <input class="form-control" placeholder="GST" name="GST" id="GST" value="@Model.GST">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">MOBILE</label>
+                <div class="col-sm-8">
+                    <input class="form-control" placeholder="Mobile" value="@Session["VendorMob"]" readonly name="MOBILE" id="MOBILE" value="@Model.MOBILE" />
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">FAX</label>
+                <div class="col-sm-8">
+                    <input class="form-control" placeholder="Fax" id="FAX" name="FAX" value="@Model.FAX">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">Contractor's In-Charge</label>
+                <div class="col-sm-8">
+                    <input class="form-control" placeholder="Contractor's In-Charge" name="CONTRACTOR_INCHARGE" id="CONTRACTOR_INCHARGE" value="@Model.CONTRACTOR_INCHARGE">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">Designation</label>
+                <div class="col-sm-8">
+                    <input class="form-control" placeholder="Designation" id="DESIGNATION" value="@Model.DESIGNATION">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">Contractor's In-Charge Mobile</label>
+                <div class="col-sm-8">
+                    <input class="form-control" placeholder="Mobile" name="CONT_INCHARGE_MOBILE" id="CONT_INCHARGE_MOBILE" value="@Model.CONTRACTOR_INCHARGE">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">Supervisor</label>
+                <div class="col-sm-8">
+                    <input class="form-control" placeholder="Supervisor" name="SUPERVISOR" id="SUPERVISOR" value="@Model.SUPERVISOR">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">Supervisor Mobile</label>
+                <div class="col-sm-8">
+                    <input class="form-control" placeholder="Mobile" name="SUP_MOBILE" id="SUP_MOBILE" value="@Model.SUP_EMAIL">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">E-mail</label>
+                <div class="col-sm-8">
+                    <input class="form-control" placeholder="E-mail" name="SUP_EMAIL" id="SUP_EMAIL" value="@Model.SUP_EMAIL">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">Secondary E-mail</label>
+                <div class="col-sm-8">
+                    <input class="form-control" placeholder="Secondary E-mail" name="SEC_EMAIL" id="SEC_EMAIL" value="@Model.SEC_EMAIL">
+                </div>
+            </div>
+        </div>
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+}

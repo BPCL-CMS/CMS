@@ -1,0 +1,433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Contractor">
+    <Key>
+      <PropertyRef Name="VENDOR_CODE" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VENDOR_CODE" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="VENDOR" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="150" />
+    <Property Name="CITY" Type="varchar" MaxLength="25" />
+    <Property Name="STATE" Type="varchar" MaxLength="25" />
+    <Property Name="PINCODE" Type="varchar" MaxLength="10" />
+    <Property Name="PAN" Type="varchar" MaxLength="25" />
+    <Property Name="GST" Type="varchar" MaxLength="25" />
+    <Property Name="MOBILE" Type="varchar" MaxLength="25" />
+    <Property Name="FAX" Type="varchar" MaxLength="25" />
+    <Property Name="CST" Type="varchar" MaxLength="25" />
+    <Property Name="CONTRACTOR_INCHARGE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DESIGNATION" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="CONT_INCHARGE_MOBILE" Type="varchar" MaxLength="50" />
+    <Property Name="PHOTO" Type="image" />
+    <Property Name="SIGNATURE" Type="image" />
+    <Property Name="DEACTIVATED" Type="bit" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="25" />
+    <Property Name="CREATED_ON" Type="date" Nullable="false" />
+    <Property Name="DELETED_BY" Type="varchar" MaxLength="25" />
+    <Property Name="DELETED_ON" Type="date" />
+    <Property Name="CONT_PREV_ID" Type="varchar" MaxLength="25" />
+    <Property Name="ISTEMPID" Type="bit" />
+    <Property Name="SEC_EMAIL" Type="varchar" MaxLength="50" />
+    <Property Name="SUPERVISOR" Type="varchar" MaxLength="50" />
+    <Property Name="SUP_MOBILE" Type="varchar" MaxLength="25" />
+    <Property Name="SUP_EMAIL" Type="varchar" MaxLength="50" />
+    <Property Name="STATUS" Type="int" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DEPT_ID" />
+    </Key>
+    <Property Name="DEPT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DEPT_CODE" Type="varchar" MaxLength="20" />
+    <Property Name="DEPT_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="CREATED_ON" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Doc_Master">
+    <Key>
+      <PropertyRef Name="DOC_ID" />
+    </Key>
+    <Property Name="DOC_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DOC_TYPE" Type="varchar" MaxLength="50" />
+    <Property Name="DOC_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="DESCRIPTION" Type="varchar" MaxLength="150" />
+    <Property Name="USER_TYPE" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EMP_ID" />
+    </Key>
+    <Property Name="EMP_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PO_NUM" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="EMP_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="GENDER" Type="varchar" MaxLength="10" />
+    <Property Name="MARITAL_STATUS" Type="varchar" MaxLength="20" />
+    <Property Name="EMP_ESINO" Type="varchar" MaxLength="50" />
+    <Property Name="ESI_REGN_DATE" Type="date" />
+    <Property Name="PEHCHAN" Type="bit" />
+    <Property Name="EMP_PF_NO" Type="varchar" MaxLength="50" />
+    <Property Name="PF_REGN_DATE" Type="date" />
+    <Property Name="UAN" Type="varchar" MaxLength="50" />
+    <Property Name="EPS" Type="bit" />
+    <Property Name="EVICTEE" Type="bit" />
+    <Property Name="EVICTEE_CARD_NO" Type="varchar" MaxLength="25" />
+    <Property Name="ISMW" Type="bit" />
+    <Property Name="DISABILITY_TYPE" Type="varchar" MaxLength="25" />
+    <Property Name="RELATION_IP" Type="varchar" MaxLength="25" />
+    <Property Name="RELATION_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="DOJ" Type="date" />
+    <Property Name="PRESENT_ADRS" Type="varchar" MaxLength="150" />
+    <Property Name="PERMANENT_ADRS" Type="varchar" MaxLength="150" />
+    <Property Name="CITY" Type="varchar" MaxLength="25" />
+    <Property Name="DISTRICT" Type="varchar" MaxLength="50" />
+    <Property Name="STATE" Type="varchar" MaxLength="25" />
+    <Property Name="PINCODE" Type="varchar" MaxLength="10" />
+    <Property Name="ICE_PHONE" Type="varchar" MaxLength="25" />
+    <Property Name="EMP_TYPE" Type="varchar" MaxLength="25" />
+    <Property Name="ID_TYPE" Type="varchar" MaxLength="50" />
+    <Property Name="ID_NUM" Type="varchar" MaxLength="50" />
+    <Property Name="PHOTO" Type="image" />
+    <Property Name="BANK_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="BANK_BRANCH" Type="varchar" MaxLength="50" />
+    <Property Name="BANK_ADDRESS" Type="varchar" MaxLength="150" />
+    <Property Name="BANK_ACNO" Type="varchar" MaxLength="50" />
+    <Property Name="BANK_IFSC" Type="varchar" MaxLength="50" />
+    <Property Name="BLACK_LISTED" Type="bit" />
+    <Property Name="BLACK_LISTED_REASON" Type="varchar" MaxLength="100" />
+    <Property Name="BLACK_LISTED_DATE" Type="date" />
+    <Property Name="REMARKS" Type="varchar" MaxLength="200" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="25" />
+    <Property Name="CREATED_ON" Type="date" />
+    <Property Name="DELETED_BY" Type="varchar" MaxLength="25" />
+    <Property Name="DELETED_ON" Type="date" />
+    <Property Name="STATUS" Type="int" />
+  </EntityType>
+  <EntityType Name="Employee_Doc">
+    <Key>
+      <PropertyRef Name="TRANS_ID" />
+    </Key>
+    <Property Name="TRANS_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VENDOR_CODE" Type="varchar" MaxLength="50" />
+    <Property Name="PO_NUMBER" Type="bigint" />
+    <Property Name="EMPLOYEE_ID" Type="bigint" />
+    <Property Name="DOC_ID" Type="bigint" />
+    <Property Name="DOC_EXTN" Type="varchar" MaxLength="50" />
+    <Property Name="DOCUMENT" Type="varbinary(max)" />
+    <Property Name="ACTIVE" Type="bit" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Employee_ESIExemption">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WC_POLICY" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="Employee_MaritalStatus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MARITAL_STATUS" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Employee_PFExemption">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SALARY_EXEMPTION" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Employee_Relations">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RELATION" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Employee_Servicebook">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EMP_ID" Type="bigint" Nullable="false" />
+    <Property Name="JOB_ID" Type="varchar" MaxLength="50" />
+    <Property Name="ESI_EXEMPTION" Type="varchar" MaxLength="20" />
+    <Property Name="WC_POLICY" Type="varchar" MaxLength="50" />
+    <Property Name="WC_POLICY_VALID_UPTO" Type="datetime" />
+    <Property Name="PF_EXEMPTION" Type="varchar" MaxLength="20" />
+    <Property Name="EMP_ESINO" Type="varchar" MaxLength="50" />
+    <Property Name="EMPR_ESI_CODE" Type="varchar" MaxLength="50" />
+    <Property Name="EMP_PF_NO" Type="varchar" MaxLength="50" />
+    <Property Name="UAN_NO" Type="varchar" MaxLength="50" />
+    <Property Name="EMPR_PF_CODE" Type="varchar" MaxLength="50" />
+    <Property Name="CREATEDBY" Type="varchar" MaxLength="50" />
+    <Property Name="CREATED_ON" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Employee_Type">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WORKER_TYPE" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Job">
+    <Key>
+      <PropertyRef Name="JOB_ID" />
+    </Key>
+    <Property Name="JOB_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PO_NUM" Type="varchar" MaxLength="20" />
+    <Property Name="ARC" Type="bit" />
+    <Property Name="ARC_NO" Type="varchar" MaxLength="20" />
+    <Property Name="JOB_NAME" Type="varchar" MaxLength="200" />
+    <Property Name="DEPT_ID" Type="int" />
+    <Property Name="AREA" Type="varchar" MaxLength="100" />
+    <Property Name="CONT_ID" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="250" />
+    <Property Name="HOUSE_KEEPING" Type="bit" />
+    <Property Name="ONLY_EXCEMPTION" Type="bit" />
+    <Property Name="NO_WORKERS" Type="smallint" Nullable="false" />
+    <Property Name="TOTAL_WORKERS" Type="smallint" />
+    <Property Name="TOTAL_PASS_COUNT" Type="smallint" />
+    <Property Name="ISMW_WORKERS_ASSIGNED" Type="smallint" />
+    <Property Name="ISMW_PASS_COUNT" Type="smallint" />
+    <Property Name="COMPLETED_DATE" Type="date" />
+    <Property Name="WORKERS_LICENSE_PASS" Type="varchar" MaxLength="50" />
+    <Property Name="WL_PASS_FROM" Type="date" />
+    <Property Name="WL_PASS_TO" Type="date" />
+    <Property Name="STAFF_PASS" Type="varchar" MaxLength="50" />
+    <Property Name="ISWL_LICENSE_CLOSED" Type="bit" />
+    <Property Name="ISMW" Type="bit" />
+    <Property Name="ISMW_LICENSE_PASS" Type="varchar" MaxLength="50" />
+    <Property Name="ISMW_FROM" Type="date" />
+    <Property Name="ISMW_TO" Type="date" />
+    <Property Name="BLOCK" Type="bit" />
+    <Property Name="BLOCK_REMARKS" Type="varchar" MaxLength="100" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="25" />
+    <Property Name="CREATED_ON" Type="date" Nullable="false" />
+    <Property Name="DELETED_BY" Type="varchar" MaxLength="25" />
+    <Property Name="DELETED_ON" Type="datetime" />
+    <Property Name="SEC_REMARKS" Type="varchar" MaxLength="250" />
+    <Property Name="STATUS" Type="int" />
+  </EntityType>
+  <EntityType Name="Job_Arc">
+    <Key>
+      <PropertyRef Name="ARC_ID" />
+    </Key>
+    <Property Name="ARC_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ARC_NO" Type="varchar" MaxLength="50" />
+    <Property Name="PO_NUM" Type="varchar" MaxLength="50" />
+    <Property Name="DESCRIPTION" Type="varchar" MaxLength="200" />
+    <Property Name="ARC_DATE" Type="datetime" />
+    <Property Name="SCHEDULE_FROM" Type="datetime" />
+    <Property Name="SCHEDULE_TO" Type="datetime" />
+    <Property Name="DEACTIVATED_ON" Type="datetime" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="CREATED_ON" Type="datetime" />
+  </EntityType>
+  <EntityType Name="vendor_details">
+    <Key>
+      <PropertyRef Name="VENDOR_CODE" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VENDOR_CODE" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="VENDOR_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="MOBILE_NO" Type="varchar" MaxLength="15" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+    <Property Name="PASWORD" Type="varchar(max)" />
+    <Property Name="OTP" Type="varchar" MaxLength="10" />
+    <Property Name="IS_ACTIVE" Type="bit" />
+    <Property Name="IS_REGISTERED" Type="bit" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Vendor_Doc">
+    <Key>
+      <PropertyRef Name="TRANS_ID" />
+    </Key>
+    <Property Name="TRANS_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VENDOR_CODE" Type="varchar" MaxLength="50" />
+    <Property Name="PO_NUMBER" Type="bigint" />
+    <Property Name="DOC_ID" Type="bigint" />
+    <Property Name="DOC_EXTN" Type="varchar" MaxLength="50" />
+    <Property Name="DOCUMENT" Type="varbinary(max)" />
+    <Property Name="ACTIVE" Type="bit" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Vendor_PO">
+    <Key>
+      <PropertyRef Name="PO_NUMBER" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VENDOR_CODE" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="PO_NUMBER" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CONTRACTOR1">
+    <Key>
+      <PropertyRef Name="COMP_ID" />
+      <PropertyRef Name="CONT_ID" />
+    </Key>
+    <Property Name="COMP_ID" Type="int" Nullable="false" />
+    <Property Name="CONT_ID" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="VENDOR" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="150" />
+    <Property Name="CITY" Type="varchar" MaxLength="25" />
+    <Property Name="STATE" Type="varchar" MaxLength="25" />
+    <Property Name="PINCODE" Type="varchar" MaxLength="10" />
+    <Property Name="PHONE" Type="varchar" MaxLength="25" />
+    <Property Name="FAX" Type="varchar" MaxLength="25" />
+    <Property Name="KGST" Type="varchar" MaxLength="25" />
+    <Property Name="CST" Type="varchar" MaxLength="25" />
+    <Property Name="CONTACT_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DESIGNATION" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="MOBILE" Type="varchar" MaxLength="25" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+    <Property Name="PHOTO" Type="image" />
+    <Property Name="SIGNATURE" Type="image" />
+    <Property Name="DEACTIVATED" Type="bit" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="25" />
+    <Property Name="CREATED_ON" Type="date" Nullable="false" />
+    <Property Name="DELETED_BY" Type="varchar" MaxLength="25" />
+    <Property Name="DELETED_ON" Type="date" />
+    <Property Name="CONT_PREV_ID" Type="varchar" MaxLength="25" />
+    <Property Name="ISTEMPID" Type="bit" />
+    <Property Name="SEC_EMAIL" Type="varchar" MaxLength="50" />
+    <Property Name="SUPERVISOR" Type="varchar" MaxLength="50" />
+    <Property Name="SUP_MOBILE" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="JOB1">
+    <Key>
+      <PropertyRef Name="COMP_ID" />
+      <PropertyRef Name="JOB_ID" />
+    </Key>
+    <Property Name="COMP_ID" Type="int" Nullable="false" />
+    <Property Name="JOB_ID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ARC" Type="bit" />
+    <Property Name="ARC_ID" Type="varchar" MaxLength="20" />
+    <Property Name="JOB_PREV_ID" Type="varchar" MaxLength="20" />
+    <Property Name="DEPT_ID" Type="int" />
+    <Property Name="DESCRIPTION" Type="varchar" MaxLength="125" Nullable="false" />
+    <Property Name="AREA" Type="varchar" MaxLength="100" />
+    <Property Name="WARRANTY_UPTO" Type="date" />
+    <Property Name="CONT_ID" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="NO_WORKERS" Type="smallint" Nullable="false" />
+    <Property Name="COMPLETED" Type="date" />
+    <Property Name="WORKERS_LICENSE_PASS" Type="varchar" MaxLength="50" />
+    <Property Name="WL_PASS_FROM" Type="date" />
+    <Property Name="WL_PASS_TO" Type="date" />
+    <Property Name="ISWL_LICENSE_CLOSED" Type="bit" />
+    <Property Name="ISMW" Type="bit" />
+    <Property Name="ISMW_LICENSE_PASS" Type="varchar" MaxLength="50" />
+    <Property Name="ISMW_FROM" Type="date" />
+    <Property Name="ISMW_TO" Type="date" />
+    <Property Name="BLOCK" Type="bit" />
+    <Property Name="BLOCK_REMARKS" Type="varchar" MaxLength="100" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="25" />
+    <Property Name="CREATED_ON" Type="date" Nullable="false" />
+    <Property Name="DELETED_BY" Type="varchar" MaxLength="25" />
+    <Property Name="DELETED_ON" Type="datetime" />
+    <Property Name="PASS_COUNT" Type="int" />
+    <Property Name="PASS_RETURNED" Type="int" />
+    <Property Name="ISTEMP_JOBID" Type="bit" />
+    <Property Name="SUB_CONT_REMARKS" Type="varchar(max)" />
+    <Property Name="STAFF" Type="varchar" MaxLength="50" />
+    <Property Name="ISHOUSE" Type="bit" />
+    <Property Name="ONLYEX" Type="bit" />
+    <Property Name="SEC_REMARKS" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="JOB_ARC1">
+    <Key>
+      <PropertyRef Name="COMP_ID" />
+      <PropertyRef Name="ARC_ID" />
+    </Key>
+    <Property Name="COMP_ID" Type="int" Nullable="false" />
+    <Property Name="ARC_ID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DEPT_ID" Type="int" />
+    <Property Name="CONT_ID" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="JOB_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="ARC_DATE" Type="date" />
+    <Property Name="ARC_DETAILS" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="ARC_FROM" Type="date" Nullable="false" />
+    <Property Name="ARC_TO" Type="date" Nullable="false" />
+    <Property Name="DEACTIVATED_ON" Type="date" />
+    <Property Name="CREATED_BY" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="CREATED_ON" Type="date" Nullable="false" />
+    <Property Name="DELETED_BY" Type="varchar" MaxLength="25" />
+    <Property Name="DELETED_ON" Type="date" />
+  </EntityType>
+  <Association Name="FK_Contractor_vendor_details">
+    <End Role="vendor_details" Type="Self.vendor_details" Multiplicity="1" />
+    <End Role="Contractor" Type="Self.Contractor" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="vendor_details">
+        <PropertyRef Name="VENDOR_CODE" />
+      </Principal>
+      <Dependent Role="Contractor">
+        <PropertyRef Name="VENDOR_CODE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JOB_ARC_CONTRACTOR">
+    <End Role="CONTRACTOR1" Type="Self.CONTRACTOR1" Multiplicity="1" />
+    <End Role="JOB_ARC1" Type="Self.JOB_ARC1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTRACTOR1">
+        <PropertyRef Name="COMP_ID" />
+        <PropertyRef Name="CONT_ID" />
+      </Principal>
+      <Dependent Role="JOB_ARC1">
+        <PropertyRef Name="COMP_ID" />
+        <PropertyRef Name="CONT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vendor_PO_vendor_details">
+    <End Role="vendor_details" Type="Self.vendor_details" Multiplicity="1" />
+    <End Role="Vendor_PO" Type="Self.Vendor_PO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vendor_details">
+        <PropertyRef Name="VENDOR_CODE" />
+      </Principal>
+      <Dependent Role="Vendor_PO">
+        <PropertyRef Name="VENDOR_CODE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CMSModelStoreContainer">
+    <EntitySet Name="Contractor" EntityType="Self.Contractor" Schema="CMS" store:Type="Tables" />
+    <EntitySet Name="Department" EntityType="Self.Department" Schema="CMS" store:Type="Tables" />
+    <EntitySet Name="Doc_Master" EntityType="Self.Doc_Master" Schema="CMS" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="CMS" store:Type="Tables" />
+    <EntitySet Name="Employee_Doc" EntityType="Self.Employee_Doc" Schema="CMS" store:Type="Tables" />
+    <EntitySet Name="Employee_ESIExemption" EntityType="Self.Employee_ESIExemption" Schema="CMS" store:Type="Tables" />
+    <EntitySet Name="Employee_MaritalStatus" EntityType="Self.Employee_MaritalStatus" Schema="CMS" store:Type="Tables" />
+    <EntitySet Name="Employee_PFExemption" EntityType="Self.Employee_PFExemption" Schema="CMS" store:Type="Tables" />
+    <EntitySet Name="Employee_Relations" EntityType="Self.Employee_Relations" Schema="CMS" store:Type="Tables" />
+    <EntitySet Name="Employee_Servicebook" EntityType="Self.Employee_Servicebook" Schema="CMS" store:Type="Tables" />
+    <EntitySet Name="Employee_Type" EntityType="Self.Employee_Type" Schema="CMS" store:Type="Tables" />
+    <EntitySet Name="Job" EntityType="Self.Job" Schema="CMS" store:Type="Tables" />
+    <EntitySet Name="Job_Arc" EntityType="Self.Job_Arc" Schema="CMS" store:Type="Tables" />
+    <EntitySet Name="vendor_details" EntityType="Self.vendor_details" Schema="CMS" store:Type="Tables" />
+    <EntitySet Name="Vendor_Doc" EntityType="Self.Vendor_Doc" Schema="CMS" store:Type="Tables" />
+    <EntitySet Name="Vendor_PO" EntityType="Self.Vendor_PO" Schema="CMS" store:Type="Tables" />
+    <EntitySet Name="CONTRACTOR1" EntityType="Self.CONTRACTOR1" Schema="dbo" Table="CONTRACTOR" store:Type="Tables" />
+    <EntitySet Name="JOB1" EntityType="Self.JOB1" Schema="dbo" Table="JOB" store:Type="Tables" />
+    <EntitySet Name="JOB_ARC1" EntityType="Self.JOB_ARC1" Schema="dbo" Table="JOB_ARC" store:Type="Tables" />
+    <AssociationSet Name="FK_Contractor_vendor_details" Association="Self.FK_Contractor_vendor_details">
+      <End Role="vendor_details" EntitySet="vendor_details" />
+      <End Role="Contractor" EntitySet="Contractor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JOB_ARC_CONTRACTOR" Association="Self.FK_JOB_ARC_CONTRACTOR">
+      <End Role="CONTRACTOR1" EntitySet="CONTRACTOR1" />
+      <End Role="JOB_ARC1" EntitySet="JOB_ARC1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vendor_PO_vendor_details" Association="Self.FK_Vendor_PO_vendor_details">
+      <End Role="vendor_details" EntitySet="vendor_details" />
+      <End Role="Vendor_PO" EntitySet="Vendor_PO" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

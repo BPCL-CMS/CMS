@@ -1,0 +1,257 @@
+﻿@model Contract_Management.Data.Contractor
+@{
+    ViewBag.Title = "Document Upload";
+    Layout = null;
+}
+
+<link href="~/Resources/JqueryUI/jquery-ui.css" rel="stylesheet" />
+<script src="~/Resources/JqueryUI/jquery-ui.js"></script>
+<link href="~/Resources/bootstrap-table-master/dist/bootstrap-table.min.css" rel="stylesheet" />
+<script src="~/Resources/bootstrap-table-master/dist/bootstrap-table.min.js"></script>
+@*<script src="~/js/notify.js"></script>*@
+<link href="~/Resources/Popup/jquery.fancybox.css" rel="stylesheet" />
+<script src="~/Resources/Popup/jquery.fancybox.js"></script>
+
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-lg-6">
+                    <div class="form-group row">
+                        <label for="label-name" class="col-sm-4 col-form-label">Document Types</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="DOC_TYPE" name="DOC_TYPE" class="select2 " style="width:100%" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="hidden" id="filename" name="filename" value="">
+                        <input type="hidden" id="SELECTED_DOCS" name="SELECTED_DOCS" value="">
+                        <input type="hidden" id="USER_TYPE" name="USER_TYPE" value="VENDOR">
+                        <input type="file" disabled id="uploadedFile" name="uploadedFile" class="form-control form-control-sm" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                        <div class="input-group-btn">
+                            <input type="button" value="Upload" class="rounded-0 btn btn-primary" id="btnUpload">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <br /><br />
+        <div class="col-lg-12">
+            <div class="form-bottom">
+                <table class="table">
+                    <tbody>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Document Name</th>
+                            <th scope="col">Action</th>
+                            <th scope="col">Preview</th>
+                        </tr>
+                    </thead>
+                    <tbody id="img_table"></tbody>
+                </table>
+
+            </div>
+           
+
+
+
+        </div>
+    </div>
+    <div style="display: none;" id="hidden-content">
+        
+        <div>
+            <img id="doc_preview" style="max-width: 400px; max-height: 500px;" />
+        </div>
+    </div>
+
+  
+
+<style>
+    tbody {
+        counter-reset: row;
+        /* Set the row counter to 0 */
+    }
+
+        tbody tr::before {
+            counter-increment: row;
+            /* Increment the row counter*/
+            content: counter(row);
+            /* Display the row */
+        }
+</style>
+<script>
+    var doc_array = {};
+    var doclist = [];
+    doc_array.doclist = doclist;
+    var items = { "id": "5" };
+    doc_array.doclist.push(items);
+    $(document).ready(function () {
+        $('#btnUpload').click(function () {
+            if ($("#DOC_TYPE").val() == "") {
+                $("#DOC_TYPE").notify("Please Select A Document Type", { position: "left" }, "error");
+            }
+            else {
+                // Checking whether FormData is available in browser
+                if (window.FormData !== undefined) {
+
+                    var fileUpload = $("#uploadedFile").get(0);
+                    var files = fileUpload.files;
+
+                    // Create FormData object
+                    var fileData = new FormData();
+
+                    // Looping over all files and add it to FormData object
+                    for (var i = 0; i < files.length; i++) {
+                        fileData.append(files[i].name, files[i]);
+                    }
+
+                    // Adding one more key to FormData object
+                    fileData.append('USER_TYPE', $("#USER_TYPE").val());
+                    fileData.append('EMP_ID', 1);
+                    fileData.append('DOC_ID', $("#DOC_TYPE").val());
+                    $.ajax({
+                        url: '../Document/DocumentsUpload',
+                        type: "POST",
+                        contentType: false, // Not to set any content header
+                        processData: false, // Not to process data
+                        data: fileData,
+                        success: function (result) {
+                            // alert(result);
+                            BindImageUploadTable(result);
+                        },
+                        error: function (err) {
+                            alert(err.statusText);
+                        }
+                    });
+                } else {
+                    alert("FormData is not supported.");
+                }
+
+            }
+        });
+        BindDOC_TYPE_Select2();
+    });
+
+    function BindDOC_TYPE_Select2() {
+
+        $("#DOC_TYPE").select2({
+            placeholder: 'Select Document',
+            allowClear: true,
+            minimumInputLength: -1,
+            ajax: {
+                url: "../Document/GetAllDoctypeByUserType/",
+                dataType: 'json',
+                quietMillis: 250,
+                type: "POST",
+                data: function (term, page, type) {
+                    return {
+                        q: term, //search term
+                        page: page, // page number
+                        type: type,
+                        USER_TYPE: $("#USER_TYPE").val(),
+                        SEL_DOCS: $("#SELECTED_DOCS").val()
+                    };
+                },
+                results: function (data, page) {
+                    debugger
+                    data = JSON.parse(data);
+                    if (data.items == "") {
+                        $("#btnSubmit").attr("disabled", false);
+                    }
+                    var more = (page * 30) < data.total_count;
+                    return { results: data.items, more: more };
+
+
+                }
+            }
+        });
+    }
+    $("#DOC_TYPE").on("change", function () {
+        $("#uploadedFile").attr("disabled", false);
+
+
+    });
+
+    function BindImageUploadTable(data) {
+        debugger;
+
+        var transid = data["TRANS_ID"] + "_" + data["DOC_ID"];
+        var $table = $('#table')
+        if (data != "") {
+            $("#img_table").append("<tr id='tr_" + data["TRANS_ID"] + "'>" +
+        "<th>" + data["DOC_NAME"] + "</th>" +
+        "<td><button type='button' onclick='DeleteImg(\"" + transid + "\")'>Delete</button></td>)" +
+        "<td><button type='button' onclick='GetUploadedImg(\"" + transid + "\")' data-fancybox data-src='#hidden-content' href='javascript:;'>Preview</button></td></tr>");
+        }
+        //$("#DOC_TYPE").select2('destroy');
+        // $("#DOC_TYPE").select2('data', { id: data["DOC_ID"], text: data["DOC_NAME"] }).remove();
+        debugger
+        var vals = $("#DOC_TYPE").val();
+        var SELECTED_DOCS = $("#SELECTED_DOCS").val();
+        SELECTED_DOCS = SELECTED_DOCS + "," + $("#DOC_TYPE").val();
+        $("#SELECTED_DOCS").val(SELECTED_DOCS);
+
+        $("#DOC_TYPE").select2("val", "");
+        //  BindDOC_TYPE_Select2();
+        $("#uploadedFile").val("");
+        $("#uploadedFile").attr("disabled", true);
+
+
+    }
+
+    function GetUploadedImg(TRANS_ID) {
+        var USER_TYPE = $("#USER_TYPE").val();
+        var transid = TRANS_ID.split('_');
+        var url = "../Document/GetUploadedImg";
+        var data = { TRANS_ID: transid[0], USER_TYPE: USER_TYPE }
+        $.post(url, data, function (result) {
+            debugger
+            if (result != "") {
+                $("#doc_preview").src = "data:image/jpg;base64," + result + "";
+
+                $("#doc_preview").attr('src', "data:image/jpg;base64," + result + "");
+            }
+            else {
+
+            }
+
+
+        });
+    }
+
+    function DeleteImg(TRANS_ID) {
+        var transid = TRANS_ID.split('_');
+        var USER_TYPE = $("#USER_TYPE").val();
+        var url = "../Document/DeleteUpload";
+        var data = { TRANS_ID: transid[0], USER_TYPE: USER_TYPE }
+        $.post(url, data, function (result) {
+            debugger
+            if (result == "Success") {
+                $('#tr_' + transid[0]).remove();
+                var a = transid[1];
+                $("#SELECTED_DOCS").val($("#SELECTED_DOCS").val().replace("," + a + "", ""));
+            }
+            else {
+
+            }
+
+
+        });
+
+        //var vals = $("#DOC_TYPE").val();
+        //var SELECTED_DOCS = $("#SELECTED_DOCS").val();
+        //SELECTED_DOCS = SELECTED_DOCS + "," + $("#DOC_TYPE").val();
+        //$("#SELECTED_DOCS").val(SELECTED_DOCS);
+    }
+
+
+
+
+</script>
+
+
+

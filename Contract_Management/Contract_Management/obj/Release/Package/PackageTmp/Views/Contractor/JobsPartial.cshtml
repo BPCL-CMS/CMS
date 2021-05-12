@@ -1,0 +1,242 @@
+﻿
+
+        <div class="form-group row">
+            <label for="label-name" class="col-sm-4 col-form-label">Job Name</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Job Name" name="JOB_NAME" id="JOB_NAME" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="label-name" class="col-sm-4 col-form-label">ARC</label>
+            <div class="col-sm-8">
+                <label class="radio-inline">
+                    <input type="radio" name="ARC" id="IsARC1" value="true"> Yes
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="ARC" id="IsARC2" value="false" checked> No
+                </label>
+            </div>
+        </div>
+        <fieldset id="div_ARC" disabled>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">ARC No</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="ARC No" name="ARC_NO" id="ARC_NO">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">Description</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" rows="3" name="DESCRIPTION" id="DESCRIPTION"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">Date</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="Date" name="ARC_DATE" id="ARC_DATE">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">Schedule From</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="Schedule From" name="SCHEDULE_FROM" id="SCHEDULE_FROM">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">Schedule To</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="Schedule To" name="SCHEDULE_TO" id="SCHEDULE_TO">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">Deactivated on</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="Deactivated on" name="DEACTIVATED_ON" id="DEACTIVATED_ON">
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group row">
+            <label for="label-name" class="col-sm-4 col-form-label">Department</label>
+            <div class="col-sm-8">
+                <input type="text" id="DEPT_ID" name="DEPT_ID" class="select2 " style="width:100%" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="label-name" class="col-sm-4 col-form-label">Area</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Area" name="AREA" id="AREA" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="label-name" class="col-sm-4 col-form-label">Contractor</label>
+            <div class="col-sm-8">
+                <input type="hidden" class="form-control" placeholder="Contractor" name="CONT_ID" value="@Session["VendorNo"]" required>
+                <input type="text" class="form-control" placeholder="Contractor" id="CONT_NAME" name="CONT_NAME" value="@Session["VendorName"]">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="label-name" class="col-sm-4 col-form-label">Address</label>
+            <div class="col-sm-8">
+                <textarea class="form-control" rows="3" name="ADDRESS" id="ADDRESS"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="label-name" class="col-sm-4 col-form-label">House Keeping</label>
+            <div class="col-sm-8">
+                <label class="radio-inline">
+                    <input type="radio" name="HOUSE_KEEPING" id="rd_housekeeping1" value="True"> Yes
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="HOUSE_KEEPING" id="rd_housekeeping2" value="False" checked> No
+                </label>
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group row">
+            <label for="label-name" class="col-sm-4 col-form-label">Only Exception</label>
+            <div class="col-sm-8">
+                <label class="radio-inline">
+                    <input type="radio" name="ONLY_EXCEMPTION" id="rd_excemption1" value="True"> Yes
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="ONLY_EXCEMPTION" id="rd_excemption2" value="False" checked> No
+                </label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="label-name" class="col-sm-4 col-form-label">No of Workers</label>
+            <div class="col-sm-8">
+                <input type="tel" class="form-control" placeholder="No of Workers" name="NO_WORKERS" id="NO_WORKERS" required="required" onblur="EnableLisence()">
+            </div>
+        </div>
+        <fieldset id="div_Liscence">
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">License Pass</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="License Pass" name="WORKERS_LICENSE_PASS" id="WORKERS_LICENSE_PASS">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">Staff Pass</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="Staff Pass" name="STAFF_PASS" id="STAFF_PASS">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">From</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="From" name="WL_PASS_FROM" id="WL_PASS_FROM">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">To</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="To" name="WL_PASS_TO" id="WL_PASS_TO">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">License Closed</label>
+                <div class="col-sm-8">
+                    <label class="radio-inline">
+                        <input type="radio" name="ISWL_LICENSE_CLOSED" id="rd_licenceClosed1" value="True"> Yes
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="ISWL_LICENSE_CLOSED" id="rd_licenceClosed2" value="False" checked> No
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group row">
+            <label for="label-name" class="col-sm-4 col-form-label">ISMW</label>
+            <div class="col-sm-8">
+                <label class="radio-inline">
+                    <input type="radio" class="ISMW" name="ISMW" id="rd_ISMW1" value="True"> Yes
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" class="ISMW" name="ISMW" id="rd_ISMW2" value="False" checked> No
+                </label>
+            </div>
+        </div>
+        <fieldset id="div_ISMW">
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">License Pass</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="License Pass" name="ISMW_LICENSE_PASS" id="ISMW_LICENSE_PASS">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">From</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="From" name="ISMW_FROM" id="ISMW_FROM">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="label-name" class="col-sm-4 col-form-label">To</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="To" name="ISMW_TO" id="ISMW_TO">
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group row">
+            <label for="label-name" class="col-sm-4 col-form-label">Clearance Block</label>
+            <div class="col-sm-8">
+                <label class="radio-inline">
+                    <input type="radio" name="BLOCK" id="rd_ClearanceBlock1" value="True"> Yes
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="BLOCK" id="rd_ClearanceBlock2" value="False" checked> No
+                </label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="label-name" class="col-sm-4 col-form-label">Reason for Blocking</label>
+            <div class="col-sm-8">
+                <textarea class="form-control" rows="3" name="BLOCK_REMARKS" id="BLOCK_REMARKS" disabled></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="label-name" class="col-sm-4 col-form-label">Remarks</label>
+            <div class="col-sm-8">
+                <textarea class="form-control" rows="3" name="SEC_REMARKS" id="SEC_REMARKS"></textarea>
+            </div>
+        </div>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            Bind_DEPT_ID();
+        });
+        function Bind_DEPT_ID() {
+            $("#DEPT_ID").select2({
+                placeholder: 'Select Department',
+                allowClear: true,
+                minimumInputLength: 0,
+                ajax: {
+                    url: "../Contractor/GetAllDepartments/",
+                    dataType: 'json',
+                    quietMillis: 250,
+                    type: "POST",
+                    data: function (term, page, type) {
+                        return {
+                            q: term, //search term
+                            page: page, // page number
+                            type: type,
+
+                        };
+                    },
+                    results: function (data, page) {
+
+                        data = JSON.parse(data);
+                        var more = (page * 30) < data.total_count;
+                        return { results: data.items, more: more };
+                    }
+                }
+            });
+        }
+
+    </script>

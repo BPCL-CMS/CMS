@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Contract_Management.Data.Menu>
+<ul class="nav navbar-nav side-nav">
+    @{
+        if (Model != null)
+        {
+            foreach (var li in Model)
+            {
+                <li  id="@li.Title"><a href="@Url.Action(""+li.URL+"")"><i class="@li.Icon"></i> @li.Title</a></li>
+            }
+        }
+
+    }
+
+
+
+    @*<li id="contractor"><a href="@Url.Action("../Contractor/Contractor")"><i class="fa fa-handshake-o"></i> Contractors</a></li>
+        <li id="jobs"><a href="@Url.Action("../Contractor/Jobs")"><i class="fa fa-wrench"></i> Jobs</a></li>
+        <li id="employee"><a href="@Url.Action("../Contractor/EmployeeList")"><i class="fa fa-users"></i> Employee</a></li>*@
+</ul>

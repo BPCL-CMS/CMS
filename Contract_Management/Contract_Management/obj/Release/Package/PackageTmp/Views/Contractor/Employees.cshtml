@@ -1,0 +1,1129 @@
+﻿@model Contract_Management.Data.DomainModels.EmployeesViewModel
+@{
+    ViewBag.Title = "Employees";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string a = ViewBag.valid;
+    string b = "";
+
+
+}
+<script src="~/Scripts/App_Scripts/Employee.js"></script>
+<ul class="breadcrumb">
+    <li><a href="@Url.Action("../Home/Index")">Home</a></li>
+    <li class="active">Employee</li>
+</ul>
+
+
+
+
+@{
+    if (Model == null)
+    {
+        <div class="col-lg-12">
+            <h2>Employee Information</h2>
+            <form method="post" action="@Url.Action("SaveEmployee", "Contractor")" id="employeeform" enctype="multipart/form-data">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Personal Details</div>
+                    <div class="panel-body">
+
+                        <input type="hidden" id="USER_TYPE" name="USER_TYPE" value="EMPLOYEE" />
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">PO Number</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="PO_NUM" name="PO_NUM" class="select2 " style="width:100%" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Name of Contract Employee as per Aadhar card</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Name of Contract Employee as per Aadhar card" name="EMP_NAME" id="EMP_NAME">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Gender</label>
+                                    <div class="col-sm-8">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="GENDER" id="IsARC1" value="Male" checked> Male
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="GENDER" id="IsARC2" value="Female"> Female
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Photo</label>
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <input type="file" id="file" name="file" onchange="show(this)">
+                                        </div>
+                                        <div>
+                                            <img id="user_img"
+                                                 height="100"
+                                                 width="90"
+                                                 style="border:solid" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Marital Status</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="select2 " placeholder="Marital Status" name="MARITAL_STATUS" id="MARITAL_STATUS" style="width:100%">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Date of Birth</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Date of Birth" name="DOB" id="DOB">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Present Address</label>
+                                    <div class="col-sm-8">
+                                        <textarea class="form-control" rows="3" name="PRESENT_ADRS" id="PRESENT_ADRS"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Permanent Address</label>
+                                    <label class="radio-inline">
+                                        <input type="checkbox" name="SameAsPermanent" id="SameAsPermanent" onchange="CopyAddress()"> Same As Permanent Address
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <textarea class="form-control" rows="2" name="PERMANENT_ADRS" id="PERMANENT_ADRS"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">City</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="City" name="CITY">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">District</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="District" name="District">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">State</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="State" name="STATE">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Pin Code</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Pin Code" name="PINCODE">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">ID Type</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="ID Type" name="ID_TYPE" value="Aadhar" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">ID Number</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="ID Number" name="ID_NUM">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Relationship</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="select2" placeholder="Relationship" name="RELATION_IP" id="RELATION_IP" style="width:100%">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Relationship of ESI Nominee with contract employee</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Relationship of ESI Nominee with contract employee" name="RELATION_NAME">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">ICE Phone</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="ICE Phone" name="ICE_PHONE">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Type of Disability</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Type of Disability" name="DISABILITY_TYPE">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Employment Details</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Employee Type</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" placeholder="Employee Type" class="select2" name="EMP_TYPE" id="EMP_TYPE" style="width:100%">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">e-Pehchan Card</label>
+                                    <div class="col-sm-8">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="PEHCHAN" value="true"> Yes
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="PEHCHAN" value="false" checked> No
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Whether contract employee is a Evictee</label>
+                                    <div class="col-sm-8">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="EVICTEE" value="True"> Yes
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="EVICTEE" value="False" checked> No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Evictee Card No</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Evictee Card No" name="EVICTEE_CARD_NO">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">EPS</label>
+                                    <div class="col-sm-8">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="EPS" value="True"> Yes
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="EPS" value="False" checked> No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Is Migrant Worker</label>
+                                    <div class="col-sm-8">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="ISMW" value="True"> Yes
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="ISMW" value="False" checked> No
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Date of enrolment in ESI</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Date of enrolment in ESI" name="DOJ" id="DOJ">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">ESI Details</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">ESI Exemption</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="ESIExemption" name="ESIExemption" class="select2 " style="width:100%" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">WC Policy No</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="WC Policy No" name="WCPolicy" id="WCPolicy" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Policy Valid UpTo</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Policy Valid UpTo" name="WC_POLICY_VALID_UPTO" id="WC_POLICY_VALID_UPTO" disabled>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">ESI Number</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="ESI Number" name="EMP_ESINO" id="EMP_ESINO" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">ESI Registration Date</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="ESI Registration Date" name="ESI_REGN_DATE" id="ESI_REGN_DATE" disabled>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Employer ESI Code</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Employer ESI Code" name="EMPR_ESI_CODE" id="EMPR_ESI_CODE" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">PF Details</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">PF Exemption</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="PFExemption" name="PF_EXEMPTION" class="select2 " style="width:100%" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">PF Number</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="PF Number" name="EMP_PF_NO" id="EMP_PF_NO" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Date of enrolment in EPF</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Date of enrolment in EPF" name="PF_REGN_DATE" id="PF_REGN_DATE" disabled>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">UAN Number</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="PF UAN Number" name="UAN" id="UAN" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Employer PF Code</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Employer PF Code" name="EMPR_PF_CODE" id="EMPR_PF_CODE" disabled>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Bank Details</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Name of Bank</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Name of Bank" name="BANK_NAME">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Name of Branch</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Name of Branch" name="BANK_BRANCH">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Bank Account Number</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="SB Account Number" name="BANK_ACNO">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">IFSC Code</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="IFSC Code" name="BANK_IFSC">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Address of Bank</label>
+                                    <div class="col-sm-8">
+                                        <textarea class="form-control" rows="3" name="BANK_ADDRESS"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Others</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="label-name" class="col-sm-4 col-form-label">Remarks</label>
+                                    <div class="col-sm-8">
+                                        <textarea class="form-control" rows="3" name="REMARKS"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Document Upload</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            @{ Html.RenderPartial("../Document/DocumentUpload");}
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="col-lg-4"></div>
+                    <div class="col-lg-8">
+                        <button type="submit" id="btnSubmit" class="btn btn-primary">SAVE</button>
+                        <input type="reset" id="btnReset" class="btn btn-primary" style="display:none;" />
+                        <button type="button" class="btn btn-primary" onclick="Cancel()">CANCEL</button>
+                        <br /><br />
+                    </div>
+
+                </div>
+            </form>
+        </div>
+                                }
+                                else
+                                {
+                                    <div class="col-lg-12">
+                                        <h2>Employee Information</h2>
+                                        <form method="post" action="@Url.Action("SaveEmployee", "Contractor")" id="employeeform" enctype="multipart/form-data">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">Personal Details</div>
+                                                <div class="panel-body">
+
+                                                    <input type="hidden" id="USER_TYPE" name="USER_TYPE" value="EMPLOYEE" />
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">PO Number</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" id="PO_NUM" name="PO_NUM" class="select2 " style="width:100%" />
+                                                                    <input type="hidden" id="hd_PO_NUM" value="@Model.PO_NUM" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Name of Contract Employee as per Aadhar card</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="Employee Name" name="EMP_NAME" id="EMP_NAME" value="@Model.EMP_NAME">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Gender</label>
+                                                                @{
+                                                                    if (Model.GENDER == "Male")
+                                                                    {
+                                                                        <div class="col-sm-8">
+                                                                            <label class="radio-inline">
+                                                                                <input type="radio" name="GENDER" id="GENDER_MALE" value="Male" checked> Male
+                                                                            </label>
+                                                                            <label class="radio-inline">
+                                                                                <input type="radio" name="GENDER" id="GENDER_FEMALE" value="Female"> Female
+                                                                            </label>
+                                                                        </div>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <div class="col-sm-8">
+                                                                            <label class="radio-inline">
+                                                                                <input type="radio" name="GENDER" id="GENDER_MALE" value="Male"> Male
+                                                                            </label>
+                                                                            <label class="radio-inline">
+                                                                                <input type="radio" name="GENDER" id="GENDER_FEMALE" value="Female" checked> Female
+                                                                            </label>
+                                                                        </div>
+                                                                    }
+                                                                }
+                                                               
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Photo</label>
+                                                                <div class="col-sm-8">
+                                                                    <div class="form-group">
+                                                                        <input type="file" id="file" name="file" onchange="show(this)">
+                                                                    </div>
+                                                                    <div>
+                                                                        <img id="user_img"
+                                                                             height="100"
+                                                                             width="90"
+                                                                             style="border:solid" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Marital Status</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="select2 " placeholder="Marital Status" name="MARITAL_STATUS" id="MARITAL_STATUS" style="width:100%">
+                                                                    @{ 
+                                                                        string maritialstatus = Model.MARITAL_STATUS_ID+"_"+Model.MARITAL_STATUS;
+                                                                    }
+                                                                    <input type="hidden" id="hd_MARITAL_STATUS" value="@maritialstatus" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Date of Birth</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="Date of Birth" name="DOB" id="DOB" value="@Convert.ToDateTime(Model.DOB).ToString("dd/MM/yyyy")">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Present Address</label>
+                                                                <div class="col-sm-8">
+                                                                    <textarea class="form-control" rows="3" name="PRESENT_ADRS" id="PRESENT_ADRS">@Model.PRESENT_ADRS</textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Permanent Address</label>
+                                                                <label class="radio-inline">
+                                                                    <input type="checkbox" name="SameAsPermanent" id="SameAsPermanent" onchange="CopyAddress()"> Same As Permanent Address
+                                                                </label>
+                                                                <div class="col-sm-8">
+                                                                    <textarea class="form-control" rows="2" name="PERMANENT_ADRS" id="PERMANENT_ADRS">@Model.PERMANENT_ADRS</textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">City</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="City" name="CITY" value="@Model.CITY">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">District</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="District" name="District">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">State</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="State" name="STATE" value="@Model.STATE">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Pin Code</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="Pin Code" name="PINCODE" value="@Model.PINCODE">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">ID Type</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="ID Type" name="ID_TYPE" value="@Model.ID_TYPE">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">ID Number</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="ID Number" name="ID_NUM" value="@Model.ID_NUM">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Relationship of ESI Nominee with contract employee</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="select2" placeholder="Relationship of ESI Nominee with contract employee" name="RELATION_IP" id="RELATION_IP" style="width:100%">
+                                                                    @{
+                                                                        string RELATION = Model.RELATION_IP_ID + "_" + Model.RELATION_IP;
+                                                                    }
+                                                                    <input type="hidden" id="hd_RELATION_IP" value="@RELATION" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Relation Name</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="Relation Name" name="RELATION_NAME" value="@Model.RELATION_NAME">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">In Case of Emergency Phone No</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="ICE Phone" name="ICE_PHONE" value="@Model.ICE_PHONE">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Type of Disability</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="Type of Disability" name="DISABILITY_TYPE" value="@Model.DISABILITY_TYPE">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">Employment Details</div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Employee Type</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" placeholder="Employee Type" class="select2" name="EMP_TYPE" id="EMP_TYPE" style="width:100%" value="@Model.EMP_TYPE">
+                                                                    @{
+                                                                        string EMP_TYPE = Model.EMP_TYPE_ID + "_" + Model.EMP_TYPE;
+                                                                    }
+                                                                    <input type="hidden" id="hd_EMP_TYPE" value="@EMP_TYPE" />
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">e-Pehchan Card</label>
+                                                                <div class="col-sm-8">
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" name="PEHCHAN" value="true"> Yes
+                                                                    </label>
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" name="PEHCHAN" value="false" checked> No
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Whether contract employee is a Evictee</label>
+                                                                <div class="col-sm-8">
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" name="EVICTEE" value="True"> Yes
+                                                                    </label>
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" name="EVICTEE" value="False" checked> No
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Evictee Card No</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="Evictee Card No" name="EVICTEE_CARD_NO" value="@Model.EVICTEE_CARD_NO">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">EPS</label>
+                                                                <div class="col-sm-8">
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" name="EPS" value="True"> Yes
+                                                                    </label>
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" name="EPS" value="False" checked> No
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Is Migrant Worker</label>
+                                                                <div class="col-sm-8">
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" name="ISMW" value="True"> Yes
+                                                                    </label>
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" name="ISMW" value="False" checked> No
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Date of enrolment in ESI</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="Date of enrolment in ESI" name="DOJ" id="DOJ" value="@Convert.ToDateTime(Model.DOB).ToString("dd/MM/yyyy")">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">ESI Details</div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">ESI Exemption</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" id="ESIExemption" name="ESIExemption" class="select2 " style="width:100%" />
+                                                                    @{
+                                                                        string ESIExemption = Model.ESI_EXEMPTION_ID + "_" + Model.ESI_EXEMPTION;
+                                                                    }
+                                                                    <input type="hidden" id="hd_ESIExemption" value="@EMP_TYPE" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">WC Policy No</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="WC Policy No" name="WCPolicy" id="WCPolicy" disabled value="@Model.WC_POLICY">
+                                                                </div> 
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Policy Valid UpTo</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="Policy Valid UpTo" name="WC_POLICY_VALID_UPTO" id="WC_POLICY_VALID_UPTO" disabled value="@Convert.ToDateTime(Model.WC_POLICY_VALID_UPTO).ToString("dd/MM/yyyy")">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">ESI Number</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="ESI Number" name="EMP_ESINO" id="EMP_ESINO" disabled value="@Model.EMP_ESINO">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">ESI Registration Date</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="ESI Registration Date" name="ESI_REGN_DATE" id="ESI_REGN_DATE" disabled value="@Convert.ToDateTime(Model.ESI_REGN_DATE).ToString("dd/MM/yyyy")">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Employer ESI Code</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="Employer ESI Code" name="EMPR_ESI_CODE" id="EMPR_ESI_CODE" disabled value="@Model.EMPR_ESI_CODE">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">PF Details</div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">PF Exemption</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" id="PFExemption" name="PF_EXEMPTION" class="select2 " style="width:100%" />
+                                                                    @{
+                                                                        string PF_EXEMPTION = Model.PF_EXEMPTION_ID + "_" + Model.PF_EXEMPTION;
+                                                                    }
+                                                                    <input type="hidden" id="hd_PF_EXEMPTION" value="@PF_EXEMPTION" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">PF Number</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="PF Number" name="EMP_PF_NO" id="EMP_PF_NO" disabled value="@Model.EMP_PF_NO">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Date of enrolment in EPF</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="PF Registration Date" name="PF_REGN_DATE" id="PF_REGN_DATE" disabled value="@Convert.ToDateTime(Model.PF_REGN_DATE).ToString("dd/MM/yyyy")">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">UAN Number</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="PF UAN Number" name="UAN" id="UAN" disabled value="@Model.UAN">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Employer PF Code</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="Employer PF Code" name="EMPR_PF_CODE" id="EMPR_PF_CODE" disabled value="@Model.EMPR_PF_CODE">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">Bank Details</div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Name of Bank</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="Name of Bank" name="BANK_NAME" value="@Model.BANK_NAME">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Name of Branch</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="Name of Branch" name="BANK_BRANCH" value="@Model.BANK_BRANCH">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Bank Account Number</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="SB Account Number" name="BANK_ACNO" value="@Model.BANK_ACNO">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">IFSC Code</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" placeholder="IFSC Code" name="BANK_IFSC" value="@Model.BANK_IFSC">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Address of Bank</label>
+                                                                <div class="col-sm-8">
+                                                                    <textarea class="form-control" rows="3" name="BANK_ADDRESS">@Model.BANK_ADDRESS</textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">Others</div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+                                                                <label for="label-name" class="col-sm-4 col-form-label">Remarks</label>
+                                                                <div class="col-sm-8">
+                                                                    <textarea class="form-control" rows="3" name="REMARKS">@Model.REMARKS</textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group row">
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">Document Upload</div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        @*@{ Html.RenderPartial("../Document/DocumentUpload");}*@
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-4"></div>
+                                                <div class="col-lg-8">
+                                                    <button type="submit" id="btnSubmit" class="btn btn-primary">SAVE</button>
+                                                    <input type="reset" id="btnReset" class="btn btn-primary" style="display:none;" />
+                                                    <button type="button" class="btn btn-primary" onclick="Cancel()">CANCEL</button>
+                                                    <br /><br />
+                                                </div>
+
+                                            </div>
+                                        </form>
+
+
+
+
+                                    </div>
+
+                                                            }
+}
+
+
+<script>
+   
+</script>

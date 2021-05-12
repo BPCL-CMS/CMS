@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "Contractor";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<ul class="breadcrumb">
+    <li><a href="@Url.Action("../EIC/Index")">Home</a></li>
+    <li class="active">Contractor List</li>
+</ul>
+
+<div class="col-lg-12">
+    <h2>Contractor Information</h2>
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <div class="col-lg-10">
+                <h3 class="panel-title">Contractor List</h3>
+            </div>
+            <div class="col-lg-2 text-right">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        @*<a class="btn btn-primary" href="@Url.Action("Employees", "Contractor")"><i class="fa fa-plus"></i> Add New Employee</a>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            
+            @*<div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group row">
+                        <label for="label-name" class="col-sm-4 col-form-label">PO Number</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="PO_NUM" name="PO_NUM" class="select2 " style="width:100%" />
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+            <div class="col-sm-12">
+                <div class="form-group row">
+                    <div class="table-responsive text-nowrap">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Contractor ID</th>
+                                    <th scope="col">Contractor Name</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ContractorTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    tbody {
+        counter-reset: row;
+    }
+
+        tbody tr::before {
+            counter-increment: row;
+            content: counter(row);
+        }
+</style>
+
+<script>
+
+    $(document).ready(function () {
+        var data = {};
+        var url = "../EIC/LoadContractors";
+        $.post(url, data, function (result) {
+            if (result.length > 0) {
+                for (var i = 0; i < result.length; i++) {
+                    var ContractorID = result[i]["ID"];
+                    var $newLinkTarget = '@Url.Action("ContractorDetails", "EIC")?ID=' + ContractorID + '';
+                    var ss = "";
+                    $("#ContractorTable").empty();
+                    $("#ContractorTable").append("<tr id='tr_" + result[i]["ID"] + "'>" +
+                                                   "<td>" + result[i]["ID"] + "</td>" +
+                                                   "<td>" + result[i]["CONTRACTOR_NAME"] + "</td>" +
+                                                   "<td>" + result[i]["CONTRACTOR_ADDRESS"] + "</td>" +
+                                                   "<td><a href='" + $newLinkTarget + "'>Details</a></td>" +
+                                               "</tr>");
+                }
+
+            }
+            else {
+                $("#ContractorTable").empty();
+                $("#ContractorTable").append("<tr><td colspan='3' align='center'> <b>NO DATA FOUND</b> </td></tr>");
+            }
+        })
+
+    });
+
+</script>

@@ -1,0 +1,261 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="~/Template/bootstrap/css/bootstrap.min.css" />
+    <link href="~/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Template/css/local.css" />
+    <script type="text/javascript" src="~/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/bootstrap/js/bootstrap.min.js"></script>
+    <!-- you need to include the shieldui css and js assets in order for the charts to work -->
+    <link rel="stylesheet" type="text/css" href="https://www.shieldui.com/shared/components/latest/css/light-bootstrap/all.min.css" />
+    <script type="text/javascript" src="https://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+    <script type="text/javascript" src="https://www.prepbootstrap.com/Content/js/gridData.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="~/css/login.css" />
+    <script src="~/js/notify.js"></script>
+
+
+
+</head>
+<body>
+   
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("../Home/Index")">Contractor Management System</a>
+             
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">              
+                <ul class="nav navbar-nav navbar-right navbar-user">
+                    <li class="dropdown user-dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="AdminLogin()"><i class="fa fa-user"></i> Admin Login</a>
+                       
+                    </li>
+                </ul>
+            </div>
+        </nav>
+   
+    
+            <div class="col-md-12">
+                <div class="col-md-8"> </div>
+                <div class="col-md-4">
+                    <div class="signup-form" id="User_login">
+                        <div class="progress_bar"></div>
+                        @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { id = "register" }))
+                        {
+                            <h2>Login</h2>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-address-card-o"></i></span>
+                                <input type="text" class="form-control" placeholder="Contractor Code" name="vendorcode" id="vendorcode">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-info" type="button" onclick="ValidateVendor()">Validate</button>
+                                </span>
+                            </div>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
+                                <input type="text" class="form-control" placeholder="Contractor Name" name="vendorname" id="vendorname" readonly>
+                            </div>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                                <input type="text" class="form-control" placeholder="Mobile No" name="mobno" id="mobno" readonly>
+                            </div>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                                <input type="text" class="form-control" placeholder="Email" name="email" id="email" readonly>
+                            </div>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                <input type="password" class="form-control" placeholder="Password" name="password" id="password">                               
+                            </div>
+                            <div class="form-group input-group" style="float: right;">
+                                <a href="@Url.Action("../Home/ChangePassword")">Forgot Password?</a>
+                            </div>
+                            <div class="form-group input-group">
+                                <a href="@Url.Action("../Home/RegisterVendor")">Register</a>
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-info btn-lg btn-block" disabled id="btnRegister" onclick="Login()">Login</button>
+                                <button type="submit" class="btn btn-info" style="display:none;" id="btnSubmit">Submit</button>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="signup-form" id="Admin_login" style="display:none;">
+                        @using (Html.BeginForm("AdminLogin", "Admin", FormMethod.Post, new { id = "register" }))
+                        {
+                            <h2>Login</h2>
+                            <div class="form-group input-group">                               
+                            </div>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
+                                <input type="text" class="form-control" placeholder="User Name" name="username" id="vendorname">
+                            </div>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                <input type="password" class="form-control" placeholder="Password" name="password" id="password">
+                            </div>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                <input type="text" id="UserRole" name="UserRole" class="select2 " style="width:100%" />
+                            </div>
+
+
+                            <div class="container-fluid">
+                                <button type="submit" class="btn btn-info"  id="btnSubmit">Submit</button>
+                                <button type="submit" class="btn btn-info" id="btnSubmit">Cancel</button>
+                            </div>
+                            @*<div class="form-group input-group" style="float: right;">
+                                <a href="@Url.Action("../Home/Index")">Forgot Password?</a>
+                            </div>*@
+                        }
+                    </div>
+
+                </div>
+            </div>
+    
+    <div class="loading">Loading&#8230;</div>
+
+    <!-- /#wrapper -->
+    <!--
+        This section initializes the chart widgets and a grid component,
+        which visualize records and allow sorting and paging.
+        For more information visit:
+        http://www.shieldui.com/documentation/javascript.chart/getting.started
+        http://www.shieldui.com/documentation/grid/javascript/getting.started
+        http://www.shieldui.com/documentation/datasource/javascript/getting.started
+    -->
+
+</body>
+</html>
+<script src="~/Resources/Select2/select2.js"></script>
+<link href="~/css/Select2/select2.css" rel="stylesheet" />
+<script>
+   
+    $(document).ready(function () {
+        $(window).keydown(function (event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+
+        var e = jQuery.Event("keypress");
+        e.which = 13; // # Some key code value
+        $(document).trigger(e);
+
+        
+        $("#UserRole").select2({
+            placeholder: 'Select Role',
+            allowClear: true,
+            minimumInputLength: 0,
+            ajax: {
+                url: "../Master/GetAllRoles/",
+                dataType: 'json',
+                quietMillis: 250,
+                type: "POST",
+                data: function (term, page, type) {
+                    return {
+                        q: term, //search term
+                        page: page, // page number
+                        type: type,
+
+                    };
+                },
+                results: function (data, page) {
+
+                    data = JSON.parse(data);
+                    var more = (page * 30) < data.total_count;
+                    return { results: data.items, more: more };
+                }
+            }
+        });
+
+    });
+    $(document).ajaxStart(function () {
+        $(".progress_bar").show();
+    });
+
+    $(document).ajaxStop(function () {
+        $(".progress_bar").hide();
+    });
+
+    function ValidateVendor() {
+        debugger
+        var vendorno = $("#vendorcode").val();
+        var url = "../Home/ValidateVendor";
+        var data = { vendorno: vendorno }
+        if ($("#vendorcode").val() != "") {
+            $.post(url, data, function (result) {
+                debugger
+                console.log(result)
+                var dat = $.parseJSON(result.Content);
+                console.log(result)
+                if (dat.length > 0) {
+                    $("#vendorname").val(dat[0]["VENDOR_NAME"])
+                    $("#mobno").val(dat[0]["MOBILE_NO"])
+                    $("#email").val(dat[0]["EMAIL"])
+                    $("#vendorcode").removeClass("error");
+                    $("#btnRegister").attr("disabled", false);
+                }
+                else {
+                    $("#vendorcode").notify("Vendor Not Registered", { position: "left" }, "warn");
+                    $('.signup-form').find('input:text').val('');
+                }
+
+
+            });
+        }
+        else {
+            $("#vendorcode").addClass("error");
+        }
+    }
+
+    function Login() {
+        debugger
+        var vendorno = $("#vendorcode").val();
+        var password = $("#password").val();
+        var url = "../Home/Login";
+        var data = { vendorno: vendorno, password: password }
+        if ($("#password").val() != "") {
+            $.post(url, data, function (result) {
+                debugger
+                console.log(result)
+                if (result == "Success") {
+                    window.location.href = "../Home/Index";
+                }
+                else {                   
+                    $("#password").notify("Entered password doesnot match", { position: "left" }, "warn");
+                    $("#password").val("");
+                }
+
+
+            });
+        }
+        else {
+            $("#vendorcode").addClass("error");
+        }
+    }
+
+    function AdminLogin()
+    {
+        $("#Admin_login").show();
+        $("#User_login").hide();
+    }
+
+   
+</script>

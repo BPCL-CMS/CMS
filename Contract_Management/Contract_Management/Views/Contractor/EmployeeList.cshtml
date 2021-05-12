@@ -1,0 +1,171 @@
+﻿@model IEnumerable<Contract_Management.Data.Employee>
+@{
+    ViewBag.Title = "EmployeeList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul class="breadcrumb">
+    <li><a href="@Url.Action("../Home/Index")">Home</a></li>
+    <li class="active">Employee</li>
+</ul>
+
+<div class="col-lg-12">
+    <h2>Employee Information</h2>
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <div class="col-lg-10">
+                <h3 class="panel-title">Employee Details</h3>
+            </div>
+            <div class="col-lg-2 text-right">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <a class="btn btn-primary" href="@Url.Action("Employees", "Contractor")"><i class="fa fa-plus"></i> Add New Employee</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            @*<form method="post" action="" id="empform">*@
+            <input type="hidden" id="USER_TYPE" name="USER_TYPE" value="EMPLOYEE" />
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group row">
+                        <label for="label-name" class="col-sm-4 col-form-label">PO Number</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="PO_NUM" name="PO_NUM" class="select2 " style="width:100%" />
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <div class="col-sm-12">
+                <div class="form-group row">
+
+                    <div class="table-responsive text-nowrap">
+                        <!--Table-->
+                        <table class="table table-striped">
+
+                            <!--Table head-->
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Employee ID</th>
+                                    <th scope="col">Employee Name</th>
+                                    <th scope="col">Document No</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <!--Table head-->
+                            <!--Table body-->
+                            <tbody id="EmpTable"></tbody>
+                            <!--Table body-->
+
+                        </table>
+
+
+                        <!--Table-->
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<style>
+    tbody {
+        counter-reset: row;
+        /* Set the row counter to 0 */
+    }
+
+        tbody tr::before {
+            counter-increment: row;
+            /* Increment the row counter*/
+            content: counter(row);
+            /* Display the row */
+        }
+</style>
+
+<script>
+
+    $("#PO_NUM").select2({
+        placeholder: 'Select PO Number',
+        allowClear: true,
+        minimumInputLength: 0,
+        ajax: {
+
+            url: "../Contractor/GetAllPOs/",
+            dataType: 'json',
+            quietMillis: 250,
+            type: "POST",
+            data: function (term, page, type) {
+                return {
+                    q: term, //search term
+                    page: page, // page number
+                    type: type,
+                };
+            },
+            results: function (data, page) {
+                debugger
+                data = JSON.parse(data);
+                var more = (page * 30) < data.total_count;
+                return { results: data.items, more: more };
+            }
+        }
+    });
+    $('#PO_NUM').on("change", function (e) {
+        var PO_NUM = $("#PO_NUM").val();
+        var url = "../Contractor/GetEmployeeList";
+        var data = { PO_NUM: PO_NUM }
+        $.post(url, data, function (result) {
+            debugger
+            if (result.length>0) {
+                for (var i = 0; i < result.length; i++)
+                {
+                    var EMPID=result[i]["EMP_ID"];                    
+                    var $newLinkTarget = '@Url.Action("GetEmployeeDetailsById", "Contractor")?EMP_ID=' + EMPID+'&IS_PARTIAL=false';
+                    var ss = "";
+                    $("#EmpTable").empty();
+                    $("#EmpTable").append("<tr id='tr_"+result[i]["EMP_ID"]+"'>" +
+                                                   "<td>"+result[i]["EMP_ID"]+"</td>" +
+                                                   "<td>" + result[i]["EMP_NAME"] + "</td>" +
+                                                   "<td>" + result[i]["ID_NUM"] + "</td>" +
+                                                   "<td><a href='"+$newLinkTarget+"'>View</a></td>"+
+                                               "</tr>");
+                            }
+
+            }
+            else
+            {
+                $("#EmpTable").empty();
+                $("#EmpTable").append("<tr><td colspan='3' align='center'> <b>NO DATA FOUND</b> </td></tr>");
+            }
+
+                    })
+    });
+
+    function GetEmpDetailsById(EMP_ID)
+    {
+        var url = "../Contractor/GetEmployeeDetailsByIdPartial";
+        var data = { EMP_ID: EMP_ID,IS_PARTIAL:fa }
+        $.post(url, data, function (result) {
+        })
+    }
+</script>

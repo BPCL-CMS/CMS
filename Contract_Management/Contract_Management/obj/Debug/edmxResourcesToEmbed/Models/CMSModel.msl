@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CMSModelStoreContainer" CdmEntityContainer="CMSFEntities">
+    <EntitySetMapping Name="vendor_details">
+      <EntityTypeMapping TypeName="CMSModel.vendor_details">
+        <MappingFragment StoreEntitySet="vendor_details">
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+          <ScalarProperty Name="IS_REGISTERED" ColumnName="IS_REGISTERED" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="OTP" ColumnName="OTP" />
+          <ScalarProperty Name="PASWORD" ColumnName="PASWORD" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="MOBILE_NO" ColumnName="MOBILE_NO" />
+          <ScalarProperty Name="PO_NUMBER" ColumnName="PO_NUMBER" />
+          <ScalarProperty Name="VENDOR_NAME" ColumnName="VENDOR_NAME" />
+          <ScalarProperty Name="VENDOR_CODE" ColumnName="VENDOR_CODE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

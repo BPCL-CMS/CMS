@@ -1,0 +1,764 @@
+﻿@model Contract_Management.Data.DomainModels.JobsViewModel
+@{
+    ViewBag.Title = "Jobs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .error_label {
+        display: inline-block;
+        max-width: 100%;
+        margin-bottom: 5px;
+        font-weight: 700;
+        color: red;
+    }
+</style>
+<link href="~/Resources/JqueryUI/jquery-ui.css" rel="stylesheet" />
+<script src="~/Resources/JqueryUI/jquery-ui.js"></script>
+
+<ul class="breadcrumb">
+    <li><a href="@Url.Action("../Home/Index")">Home</a></li>
+    <li class="active">Jobs</li>
+</ul>
+
+<div class="col-lg-12">
+    <h2>Job Information</h2>
+
+    @*<div class="col-lg-2 text-right">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button class="btn btn-primary"><i class="fa fa-plus"></i> Add New</button>
+                </div>
+            </div>
+        </div>*@
+</div>
+
+
+
+<form method="post" action="@Url.Action("SaveJob", "Contractor")" id="jobform">
+
+    <input type="hidden" id="JOB_ID" name="JOB_ID" value="0" />
+    <input type="hidden" id="ARC_ID" name="ARC_ID" value="0" />
+    <input type="hidden" id="USER_TYPE" name="USER_TYPE" value="VENDOR" />
+
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Job</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group row">
+                            <label for="label-name" class="col-sm-4 col-form-label">Job No</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="PO_NUM" name="PO_NUM" class="select2 " style="width:100%" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group row">
+                            <label for="label-name" class="col-sm-4 col-form-label">Job Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="Job Name" name="JOB_NAME" id="JOB_NAME" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group row">
+                            <label for="label-name" class="col-sm-4 col-form-label">Description</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" rows="3" name="DESCRIPTION" id="DESCRIPTION"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group row">
+                            <label for="label-name" class="col-sm-4 col-form-label">Department</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="DEPT_ID" name="DEPT_ID" class="select2 " style="width:100%" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group row">
+                            <label for="label-name" class="col-sm-4 col-form-label">Area</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="Area" name="AREA" id="AREA" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group row">
+                            <label for="label-name" class="col-sm-4 col-form-label">Contractor Name</label>
+                            <div class="col-sm-8">
+                                <input type="hidden" class="form-control" placeholder="Contractor Name" name="CONT_ID" value="@Session["VendorNo"]" required>
+                                <input type="text" class="form-control" placeholder="Contractor" name="CONT_NAME" value="@Session["VendorName"]">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group row">
+                            <label for="label-name" class="col-sm-4 col-form-label">Contractor Address</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" rows="3" name="ADDRESS" id="ADDRESS"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group row">
+                            <label for="label-name" class="col-sm-4 col-form-label">House Keeping</label>
+                            <div class="col-sm-8">
+                                <label class="radio-inline">
+                                    <input type="radio" name="HOUSE_KEEPING" id="rd_housekeeping1" value="True"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="HOUSE_KEEPING" id="rd_housekeeping2" value="False" checked> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group row">
+                            <label for="label-name" class="col-sm-4 col-form-label">Only Exception</label>
+                            <div class="col-sm-8">
+                                <label class="radio-inline">
+                                    <input type="radio" name="ONLY_EXCEMPTION" id="rd_excemption1" value="True"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="ONLY_EXCEMPTION" id="rd_excemption2" value="False" checked> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">ARC Details</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group row">
+                            <label for="label-name" class="col-sm-4 col-form-label">ARC</label>
+                            <div class="col-sm-8">
+                                <label class="radio-inline">
+                                    <input type="radio" name="ARC" id="IsARC1" value="true"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="ARC" id="IsARC2" value="false" checked> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+
+                    </div>
+                </div>
+                <fieldset id="div_ARC" disabled>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <label for="label-name" class="col-sm-4 col-form-label">ARC No</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="ARC No" name="ARC_NO" id="ARC_NO">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <label for="label-name" class="col-sm-4 col-form-label">Date</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Date" name="ARC_DATE" id="ARC_DATE">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <label for="label-name" class="col-sm-4 col-form-label">Schedule From</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Schedule From" name="SCHEDULE_FROM" id="SCHEDULE_FROM">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <label for="label-name" class="col-sm-4 col-form-label">Schedule To</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Schedule To" name="SCHEDULE_TO" id="SCHEDULE_TO">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <label for="label-name" class="col-sm-4 col-form-label">Deactivated on</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Deactivated on" name="DEACTIVATED_ON" id="DEACTIVATED_ON">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Worker Details</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group row">
+                            <label for="label-name" class="col-sm-4 col-form-label">No. of contract labour to be engaged</label>
+                            <div class="col-sm-8">
+                                <input type="tel" class="form-control" placeholder="No. of contract labour to be engaged" name="NO_WORKERS" id="NO_WORKERS" required="required" onblur="EnableLisence()">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+
+                    </div>
+                </div>
+                <fieldset id="div_Liscence">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <label for="label-name" class="col-sm-4 col-form-label">Labour License No</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Labour License No" name="WORKERS_LICENSE_PASS" id="WORKERS_LICENSE_PASS">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <label for="label-name" class="col-sm-4 col-form-label">Labour License for how many nos. of labour
+</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Labour License for how many nos. of labour" name="STAFF_PASS" id="STAFF_PASS">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <label for="label-name" class="col-sm-4 col-form-label">From</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="From" name="WL_PASS_FROM" id="WL_PASS_FROM">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <label for="label-name" class="col-sm-4 col-form-label">To</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="To" name="WL_PASS_TO" id="WL_PASS_TO">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <label for="label-name" class="col-sm-4 col-form-label">License Closed</label>
+                                <div class="col-sm-8">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="ISWL_LICENSE_CLOSED" id="rd_licenceClosed1" value="True"> Yes
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="ISWL_LICENSE_CLOSED" id="rd_licenceClosed2" value="False" checked> No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Migrant Worker Details</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group row">
+                            <label for="label-name" class="col-sm-4 col-form-label">ISMW</label>
+                            <div class="col-sm-8">
+                                <label class="radio-inline">
+                                    <input type="radio" class="ISMW" name="ISMW" id="rd_ISMW1" value="True"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" class="ISMW" name="ISMW" id="rd_ISMW2" value="False" checked> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+
+                    </div>
+                </div>
+                <fieldset id="div_ISMW">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <label for="label-name" class="col-sm-4 col-form-label">ISMW License No.
+</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="ISMW License No." name="ISMW_LICENSE_PASS" id="ISMW_LICENSE_PASS">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <label for="label-name" class="col-sm-4 col-form-label">From</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="From" name="ISMW_FROM" id="ISMW_FROM">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <label for="label-name" class="col-sm-4 col-form-label">To</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="To" name="ISMW_TO" id="ISMW_TO">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                        </div>
+                        <div class="col-sm-6">
+
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Others</div>
+            <div class="panel-body">
+                <div class="col-sm-6">
+                    <div class="form-group row">
+                        <label for="label-name" class="col-sm-4 col-form-label">Remarks</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" rows="3" name="SEC_REMARKS" id="SEC_REMARKS"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Document Upload</div>
+            <div class="panel-body">
+                <div class="row">
+                    @{ Html.RenderPartial("../Document/DocumentUpload");}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="col-lg-12">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-8">
+            <button type="submit" id="btnSubmit" class="btn btn-primary">SAVE</button>
+            <input type="reset" id="btnReset" class="btn btn-primary" style="display:none;" />
+            <button type="button" class="btn btn-primary" onclick="Cancel()">CANCEL</button>
+            <br /><br />
+        </div>
+
+    </div>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $(".nav,li").removeClass('active');
+        $("#jobs").addClass('active');
+
+        $("#COMPLETED_DATE").datepicker({ dateFormat: 'dd-mm-yy' });
+        $("#WL_PASS_FROM").datepicker({ dateFormat: 'dd-mm-yy' });
+        $("#WL_PASS_TO").datepicker({ dateFormat: 'dd-mm-yy' });
+        $("#ISMW_FROM").datepicker({ dateFormat: 'dd-mm-yy' });
+        $("#ISMW_TO").datepicker({ dateFormat: 'dd-mm-yy' });
+        $("#ARC_DATE").datepicker({ dateFormat: 'dd-mm-yy' });
+        $("#SCHEDULE_FROM").datepicker({ dateFormat: 'dd-mm-yy' });
+        $("#SCHEDULE_TO").datepicker({ dateFormat: 'dd-mm-yy' });
+        $("#DEACTIVATED_ON").datepicker({ dateFormat: 'dd-mm-yy' });
+        Bind_DEPT_ID();
+        Bind_PO_NUM();
+        $("#div_Liscence").prop('disabled', true);
+        $("#div_ISMW").prop('disabled', true);
+        $(".ISMW").change(function () {
+
+            var ISMW = $("input[name='ISMW']:checked").val();
+            if (ISMW == "True") {
+                $("#div_ISMW").prop('disabled', false);
+            }
+            else {
+                $("#div_ISMW").prop('disabled', true);
+                $('#div_ISMW').find('input:text, input:password, select,check')
+                         .each(function () {
+                             $(this).val('');
+                         });
+            }
+        });
+
+        $('input[name="ARC"]').change(function () {
+
+            var ARC = $("input[name='ARC']:checked").val();
+            if (ARC == "true") {
+                $("#div_ARC").prop('disabled', false);
+            }
+            else {
+                $("#div_ARC").prop('disabled', true);
+                $('#div_ARC').find('input:text, input:password, select,check')
+                        .each(function () {
+                            $(this).val('');
+                        });
+            }
+        });
+
+        $('input[name="BLOCK"]').change(function () {
+
+            var BLOCK = $("input[name='BLOCK']:checked").val();
+            if (BLOCK == "True") {
+                $("#BLOCK_REMARKS").prop('disabled', false);
+            }
+            else {
+                $("#BLOCK_REMARKS").prop('disabled', true);
+            }
+        });
+
+        $('#jobform').validate({ // initialize the plugin
+            ignore: [],
+            rules: {
+                PO_NUM: {
+                    required: true
+                },
+                JOB_NAME: {
+                    required: true
+                },
+                //ARC_NO: {
+                //    required: true,
+                //    minlength: 5
+                //},
+                DEPT_ID: {
+                    required: true,
+                },
+                NO_WORKERS: {
+                    required: true,
+                    digits: true
+                }
+
+
+            }
+        });
+
+
+    });
+
+
+
+
+    function EnableLisence() {
+        var num = $("#NO_WORKERS").val();
+        if (num > 20) {
+            $("#div_Liscence").prop('disabled', false);
+
+        }
+        else {
+            $("#div_Liscence").prop('disabled', true);
+            $('#div_Liscence').find('input:text, input:password, select,check')
+                           .each(function () {
+                               $(this).val('');
+                           });
+        }
+    }
+
+    function Bind_PO_NUM() {
+        $("#PO_NUM").select2({
+            placeholder: 'Select Job Number',
+            allowClear: true,
+            minimumInputLength: 0,
+            ajax: {
+                url: "../Contractor/GetAllPOs/",
+                dataType: 'json',
+                quietMillis: 250,
+                type: "POST",
+                data: function (term, page, type) {
+                    return {
+                        q: term, //search term
+                        page: page, // page number
+                        type: type,
+
+                    };
+                },
+                results: function (data, page) {
+
+                    data = JSON.parse(data);
+                    var more = (page * 30) < data.total_count;
+                    return { results: data.items, more: more };
+                }
+            }
+        });
+    }
+
+
+    function Bind_DEPT_ID() {
+        $("#DEPT_ID").select2({
+            placeholder: 'Select Department',
+            allowClear: true,
+            minimumInputLength: 0,
+            ajax: {
+                url: "../Contractor/GetAllDepartments/",
+                dataType: 'json',
+                quietMillis: 250,
+                type: "POST",
+                data: function (term, page, type) {
+                    return {
+                        q: term, //search term
+                        page: page, // page number
+                        type: type,
+
+                    };
+                },
+                results: function (data, page) {
+
+                    data = JSON.parse(data);
+                    var more = (page * 30) < data.total_count;
+                    return { results: data.items, more: more };
+                }
+            }
+        });
+    }
+
+
+    $('#PO_NUM').on("change", function (e) {
+        BindJobData();
+
+    });
+
+
+    function BindJobData() {
+        var PO_NUM = $("#PO_NUM").val();
+        var url = "../Contractor/GetAllJobsByPO_NUM";
+        var data = { PO_NUM: PO_NUM }
+        $.post(url, data, function (result) {
+            debugger
+            if ((JSON.parse(result).success) == true) {
+                result = JSON.parse(result).results;
+                $("#JOB_ID").val(result["JOB_ID"]);
+                $("#PO_NUM").val(result["PO_NUM"]);
+                $("#JOB_NAME").val(result["JOB_NAME"]);
+                if (result["ARC"] == true) {
+                    $('input[name="ARC"]').attr('checked', false);
+                    $("#IsARC1").prop("checked", true);
+                    $("#div_ARC").prop('disabled', false);
+                }
+                else {
+                    $('input[name="ARC"]').attr('checked', false);
+                    $("#IsARC2").prop("checked", true);
+                    $("#div_ARC").prop('disabled', true);
+                }
+                $("#ARC_ID").val(result["ARC_ID"]);
+                $("#ARC").val(result["ARC"]);
+                $("#ARC_NO").val(result["ARC_NO"]);
+                $("#DESCRIPTION").val(result["DESCRIPTION"]);
+                $("#ARC_DATE").val(convertDate(result["ARC_DATE"]));
+                $("#SCHEDULE_FROM").val(convertDate(result["SCHEDULE_FROM"]));
+                $("#SCHEDULE_TO").val(convertDate(result["SCHEDULE_TO"]));
+                $("#DEACTIVATED_ON").val(convertDate(result["DEACTIVATED_ON"]));
+                //$("#DESCRIPTION").val(result["DESCRIPTION"]);
+                $("#DEPT_ID").select2('data', { id: result["DEPT_ID"], text: result["DEPT_NAME"] }).trigger('change');
+
+                //$("#DEPT_ID").val(result["DEPT_ID"]).trigger('change');
+                $("#AREA").val(result["AREA"]);
+                $("#CONT_ID").val(result["CONT_ID"]);
+                $("#ADDRESS").val(result["ADDRESS"]);
+                if (result["HOUSE_KEEPING"] == true) {
+                    $('.HOUSE_KEEPING').removeAttr('checked')
+                    $("#rd_housekeeping1").prop("checked", true);
+                }
+                else {
+                    $('.HOUSE_KEEPING').removeAttr('checked')
+                    $("#rd_housekeeping2").prop("checked", true);
+                }
+                if (result["ONLY_EXCEMPTION"] == true) {
+                    $('.ONLY_EXCEMPTION').removeAttr('checked')
+                    $("#rd_excemption1").prop("checked", true);
+                }
+                else {
+                    $('.ONLY_EXCEMPTION').removeAttr('checked')
+                    $("#rd_excemption2").prop("checked", true);
+                }
+                $("#NO_WORKERS").val(result["NO_WORKERS"]);
+                if (result["NO_WORKERS"] > 20) {
+                    EnableLisence();
+                }
+                $("#WORKERS_LICENSE_PASS").val(result["WORKERS_LICENSE_PASS"]);
+                $("#WL_PASS_FROM").val(convertDate(result["WL_PASS_FROM"]));
+                $("#WL_PASS_TO").val(convertDate(result["WL_PASS_TO"]));
+                $("#STAFF_PASS").val(result["STAFF_PASS"]);
+                if (result["ISWL_LICENSE_CLOSED"] == true) {
+                    $('.ISWL_LICENSE_CLOSED').removeAttr('checked')
+                    $("#rd_licenceClosed1").prop("checked", true);
+                }
+                else {
+                    $('.ISWL_LICENSE_CLOSED').removeAttr('checked')
+                    $("#rd_licenceClosed2").prop("checked", true);
+                }
+                if (result["ISMW"] == true) {
+                    $('input[name="ISMW"]').attr('checked', false);
+                    $("#rd_ISMW1").prop("checked", true);
+                    $("#div_ISMW").prop('disabled', false);
+                }
+                else {
+                    $('input[name="ISMW"]').attr('checked', false);
+                    $("#rd_ISMW2").prop("checked", true);
+                    $("#div_ISMW").prop('disabled', true);
+                }
+                $("#ISMW_LICENSE_PASS").val(result["ISMW_LICENSE_PASS"]);
+                $("#ISMW_FROM").val(convertDate(result["ISMW_FROM"]));
+                $("#ISMW_TO").val(convertDate(result["ISMW_TO"]));
+                if (result["BLOCK"] == true) {
+                    $('.BLOCK').removeAttr('checked')
+                    $("#rd_ClearanceBlock1").prop("checked", true);
+                    $("#BLOCK_REMARKS").prop('disabled', false);
+                }
+                else {
+                    $('.BLOCK').removeAttr('checked')
+                    $("#rd_ClearanceBlock2").prop("checked", true);
+                    $("#BLOCK_REMARKS").prop('disabled', true);
+                }
+                $("#BLOCK_REMARKS").val(result["BLOCK_REMARKS"]);
+                $("#SEC_REMARKS").val(result["SEC_REMARKS"]);
+                $("#btnSubmit").text("UPDATE");
+                BindDocuments();
+            }
+            else {
+                ResetForm();
+            }
+        });
+    }
+
+    function convertDate(inputFormat) {
+        function pad(s) { return (s < 10) ? '0' + s : s; }
+        var d = new Date(inputFormat)
+        return [pad(d.getDate()), pad(d.getMonth() + 1), d.getFullYear()].join('-')
+    }
+
+    function BindDocuments() {
+        var PO_NUM = $("#PO_NUM").val();
+        var url = "../Contractor/GetAllJobDOCSByPO_NUM";
+        var data = { PO_NUM: PO_NUM }
+        $.post(url, data, function (result) {
+            debugger
+            if ((JSON.parse(result).success) == true) {
+                result = JSON.parse(result).results;
+                for (var i = 0; i < result.length; i++) {
+                    var transid = result[i]["TRANS_ID"] + "_" + result[i]["DOC_ID"];
+                    $("#img_table").append("<tr id='tr_" + result[i]["TRANS_ID"] + "'>" +
+                      "<th>" + result[i]["DOC_NAME"] + "</th>" +
+                      "<td><button type='button' onclick='DeleteImg(\"" + transid + "\")'>Delete</button></td>)" +
+                      "<td><button type='button' onclick='GetUploadedImg(\"" + transid + "\")' data-fancybox data-src='#hidden-content' href='javascript:;'>Preview</button></td></tr>");
+
+                    var vals = result[i]["DOC_ID"];
+                    var SELECTED_DOCS = $("#SELECTED_DOCS").val();
+                    SELECTED_DOCS = SELECTED_DOCS + "," + result[i]["DOC_ID"];
+                    $("#SELECTED_DOCS").val(SELECTED_DOCS);
+
+                    $("#DOC_TYPE").select2("val", "");
+                    //  BindDOC_TYPE_Select2();
+                    $("#uploadedFile").val("");
+                    $("#uploadedFile").attr("disabled", true);
+
+                }
+
+            }
+
+
+        });
+
+
+    }
+
+    function ResetForm() {
+        $("#btnReset").trigger("click");
+        $("#DEPT_ID").select2('destroy');
+        Bind_DEPT_ID();
+        $("#div_ARC").prop('disabled', true);
+        $("#div_ISMW").prop('disabled', false);
+        EnableLisence();
+        $("#div_ISMW").prop('disabled', true);
+        $("#img_table").empty();
+        $("#SELECTED_DOCS").val("");
+    }
+
+
+
+
+    function ConvertJsonDateString(jsonDate) {
+        var shortDate = null;
+        if (jsonDate) {
+            var regex = /-?\d+/;
+            var matches = regex.exec(jsonDate);
+            var dt = new Date(parseInt(matches[0]));
+            var month = dt.getMonth() + 1;
+            var monthString = month > 9 ? month : '0' + month;
+            var day = dt.getDate();
+            var dayString = day > 9 ? day : '0' + day;
+            var year = dt.getFullYear();
+            shortDate = dayString + '-' + monthString + '-' + year;
+        }
+        return shortDate;
+    };
+
+    function Cancel() {
+        window.location.href = "../Home/Index";
+    }
+
+
+
+</script>

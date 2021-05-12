@@ -1,0 +1,476 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CMSFEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Departments" EntityType="CMSModel.Department" />
+    <EntitySet Name="vendor_details" EntityType="CMSModel.vendor_details" />
+    <EntitySet Name="Vendor_PO" EntityType="CMSModel.Vendor_PO" />
+    <AssociationSet Name="FK_Vendor_PO_vendor_details" Association="CMSModel.FK_Vendor_PO_vendor_details">
+      <End Role="vendor_details" EntitySet="vendor_details" />
+      <End Role="Vendor_PO" EntitySet="Vendor_PO" />
+    </AssociationSet>
+    <EntitySet Name="Job_Arc" EntityType="CMSModel.Job_Arc" />
+    <EntitySet Name="Doc_Master" EntityType="CMSModel.Doc_Master" />
+    <EntitySet Name="Employee_ESIExemption" EntityType="CMSModel.Employee_ESIExemption" />
+    <EntitySet Name="Employee_PFExemption" EntityType="CMSModel.Employee_PFExemption" />
+    <EntitySet Name="Employee_MaritalStatus" EntityType="CMSModel.Employee_MaritalStatus" />
+    <EntitySet Name="Employee_Relations" EntityType="CMSModel.Employee_Relations" />
+    <EntitySet Name="Employee_Type" EntityType="CMSModel.Employee_Type" />
+    <EntitySet Name="Employee_Servicebook" EntityType="CMSModel.Employee_Servicebook" />
+    <EntitySet Name="Jobs" EntityType="CMSModel.Job" />
+    <EntitySet Name="JOB1" EntityType="CMSModel.JOB1" />
+    <EntitySet Name="JOB_ARC1" EntityType="CMSModel.JOB_ARC1" />
+    <EntitySet Name="Employee_Doc" EntityType="CMSModel.Employee_Doc" />
+    <EntitySet Name="Vendor_Doc" EntityType="CMSModel.Vendor_Doc" />
+    <EntitySet Name="Employees" EntityType="CMSModel.Employee" />
+    <EntitySet Name="Contractors" EntityType="CMSModel.Contractor" />
+    <AssociationSet Name="FK_Contractor_vendor_details" Association="CMSModel.FK_Contractor_vendor_details">
+      <End Role="vendor_details" EntitySet="vendor_details" />
+      <End Role="Contractor" EntitySet="Contractors" />
+    </AssociationSet>
+    <EntitySet Name="DocumentTypes" EntityType="CMSModel.DocumentType" />
+    <EntitySet Name="Gates" EntityType="CMSModel.Gate" />
+    <EntitySet Name="PassTypes" EntityType="CMSModel.PassType" />
+    <EntitySet Name="Roles" EntityType="CMSModel.Role" />
+    <EntitySet Name="UserDetails" EntityType="CMSModel.UserDetail" />
+    <EntitySet Name="Menus" EntityType="CMSModel.Menu" />
+    <EntitySet Name="UserRoles" EntityType="CMSModel.UserRole" />
+  </EntityContainer>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DEPT_ID" />
+    </Key>
+    <Property Name="DEPT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DEPT_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DEPT_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="vendor_details">
+    <Key>
+      <PropertyRef Name="VENDOR_CODE" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VENDOR_CODE" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="VENDOR_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MOBILE_NO" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PASWORD" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+    <Property Name="IS_REGISTERED" Type="Boolean" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Vendor_PO" Relationship="CMSModel.FK_Vendor_PO_vendor_details" FromRole="vendor_details" ToRole="Vendor_PO" />
+    <NavigationProperty Name="Contractor" Relationship="CMSModel.FK_Contractor_vendor_details" FromRole="vendor_details" ToRole="Contractor" />
+  </EntityType>
+  <EntityType Name="Vendor_PO">
+    <Key>
+      <PropertyRef Name="PO_NUMBER" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VENDOR_CODE" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="PO_NUMBER" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="vendor_details" Relationship="CMSModel.FK_Vendor_PO_vendor_details" FromRole="Vendor_PO" ToRole="vendor_details" />
+  </EntityType>
+  <Association Name="FK_Vendor_PO_vendor_details">
+    <End Type="CMSModel.vendor_details" Role="vendor_details" Multiplicity="1" />
+    <End Type="CMSModel.Vendor_PO" Role="Vendor_PO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vendor_details">
+        <PropertyRef Name="VENDOR_CODE" />
+      </Principal>
+      <Dependent Role="Vendor_PO">
+        <PropertyRef Name="VENDOR_CODE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Job_Arc">
+    <Key>
+      <PropertyRef Name="ARC_ID" />
+    </Key>
+    <Property Name="ARC_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ARC_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PO_NUM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ARC_DATE" Type="DateTime" Precision="3" />
+    <Property Name="SCHEDULE_FROM" Type="DateTime" Precision="3" />
+    <Property Name="SCHEDULE_TO" Type="DateTime" Precision="3" />
+    <Property Name="DEACTIVATED_ON" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Doc_Master">
+    <Key>
+      <PropertyRef Name="DOC_ID" />
+    </Key>
+    <Property Name="DOC_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DOC_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOC_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="USER_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Employee_ESIExemption">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WC_POLICY" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Employee_PFExemption">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SALARY_EXEMPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Employee_MaritalStatus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MARITAL_STATUS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Employee_Relations">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RELATION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Employee_Type">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WORKER_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Employee_Servicebook">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EMP_ID" Type="Int64" Nullable="false" />
+    <Property Name="JOB_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ESI_EXEMPTION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="WC_POLICY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WC_POLICY_VALID_UPTO" Type="DateTime" Precision="3" />
+    <Property Name="PF_EXEMPTION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EMP_ESINO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EMPR_ESI_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EMP_PF_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UAN_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EMPR_PF_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CREATEDBY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Job">
+    <Key>
+      <PropertyRef Name="JOB_ID" />
+    </Key>
+    <Property Name="JOB_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PO_NUM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ARC" Type="Boolean" />
+    <Property Name="ARC_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="JOB_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="DEPT_ID" Type="Int32" />
+    <Property Name="AREA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CONT_ID" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="HOUSE_KEEPING" Type="Boolean" />
+    <Property Name="ONLY_EXCEMPTION" Type="Boolean" />
+    <Property Name="NO_WORKERS" Type="Int16" Nullable="false" />
+    <Property Name="TOTAL_WORKERS" Type="Int16" />
+    <Property Name="TOTAL_PASS_COUNT" Type="Int16" />
+    <Property Name="ISMW_WORKERS_ASSIGNED" Type="Int16" />
+    <Property Name="ISMW_PASS_COUNT" Type="Int16" />
+    <Property Name="COMPLETED_DATE" Type="DateTime" Precision="0" />
+    <Property Name="WORKERS_LICENSE_PASS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WL_PASS_FROM" Type="DateTime" Precision="0" />
+    <Property Name="WL_PASS_TO" Type="DateTime" Precision="0" />
+    <Property Name="STAFF_PASS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ISWL_LICENSE_CLOSED" Type="Boolean" />
+    <Property Name="ISMW" Type="Boolean" />
+    <Property Name="ISMW_LICENSE_PASS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ISMW_FROM" Type="DateTime" Precision="0" />
+    <Property Name="ISMW_TO" Type="DateTime" Precision="0" />
+    <Property Name="BLOCK" Type="Boolean" />
+    <Property Name="BLOCK_REMARKS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DELETED_BY" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="DELETED_ON" Type="DateTime" Precision="3" />
+    <Property Name="SEC_REMARKS" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="Int32" />
+  </EntityType>
+  <EntityType Name="JOB1">
+    <Key>
+      <PropertyRef Name="COMP_ID" />
+      <PropertyRef Name="JOB_ID" />
+    </Key>
+    <Property Name="COMP_ID" Type="Int32" Nullable="false" />
+    <Property Name="JOB_ID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ARC" Type="Boolean" />
+    <Property Name="ARC_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="JOB_PREV_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DEPT_ID" Type="Int32" />
+    <Property Name="DESCRIPTION" Type="String" Nullable="false" MaxLength="125" FixedLength="false" Unicode="false" />
+    <Property Name="AREA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="WARRANTY_UPTO" Type="DateTime" Precision="0" />
+    <Property Name="CONT_ID" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="NO_WORKERS" Type="Int16" Nullable="false" />
+    <Property Name="COMPLETED" Type="DateTime" Precision="0" />
+    <Property Name="WORKERS_LICENSE_PASS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WL_PASS_FROM" Type="DateTime" Precision="0" />
+    <Property Name="WL_PASS_TO" Type="DateTime" Precision="0" />
+    <Property Name="ISWL_LICENSE_CLOSED" Type="Boolean" />
+    <Property Name="ISMW" Type="Boolean" />
+    <Property Name="ISMW_LICENSE_PASS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ISMW_FROM" Type="DateTime" Precision="0" />
+    <Property Name="ISMW_TO" Type="DateTime" Precision="0" />
+    <Property Name="BLOCK" Type="Boolean" />
+    <Property Name="BLOCK_REMARKS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DELETED_BY" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="DELETED_ON" Type="DateTime" Precision="3" />
+    <Property Name="PASS_COUNT" Type="Int32" />
+    <Property Name="PASS_RETURNED" Type="Int32" />
+    <Property Name="ISTEMP_JOBID" Type="Boolean" />
+    <Property Name="SUB_CONT_REMARKS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="STAFF" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ISHOUSE" Type="Boolean" />
+    <Property Name="ONLYEX" Type="Boolean" />
+    <Property Name="SEC_REMARKS" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="JOB_ARC1">
+    <Key>
+      <PropertyRef Name="COMP_ID" />
+      <PropertyRef Name="ARC_ID" />
+    </Key>
+    <Property Name="COMP_ID" Type="Int32" Nullable="false" />
+    <Property Name="ARC_ID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DEPT_ID" Type="Int32" />
+    <Property Name="CONT_ID" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="JOB_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ARC_DATE" Type="DateTime" Precision="0" />
+    <Property Name="ARC_DETAILS" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ARC_FROM" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ARC_TO" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DEACTIVATED_ON" Type="DateTime" Precision="0" />
+    <Property Name="CREATED_BY" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DELETED_BY" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="DELETED_ON" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="Employee_Doc">
+    <Key>
+      <PropertyRef Name="TRANS_ID" />
+    </Key>
+    <Property Name="TRANS_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VENDOR_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PO_NUMBER" Type="Int64" />
+    <Property Name="EMPLOYEE_ID" Type="Int64" />
+    <Property Name="DOC_ID" Type="Int64" />
+    <Property Name="DOC_EXTN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOCUMENT" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ACTIVE" Type="Boolean" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Vendor_Doc">
+    <Key>
+      <PropertyRef Name="TRANS_ID" />
+    </Key>
+    <Property Name="TRANS_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VENDOR_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PO_NUMBER" Type="Int64" />
+    <Property Name="DOC_ID" Type="Int64" />
+    <Property Name="DOC_EXTN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOCUMENT" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ACTIVE" Type="Boolean" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EMP_ID" />
+    </Key>
+    <Property Name="EMP_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PO_NUM" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="EMP_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GENDER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MARITAL_STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="HAVING_ESI_NO" Type="Boolean" />
+    <Property Name="ESI_EXEMPTED_CASE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EMP_ESINO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ESI_REGN_DATE" Type="DateTime" Precision="0" />
+    <Property Name="ESI_NOMINEE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PEHCHAN" Type="Boolean" />
+    <Property Name="EMP_PF_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PF_REGN_DATE" Type="DateTime" Precision="0" />
+    <Property Name="UAN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EPS" Type="Boolean" />
+    <Property Name="EVICTEE" Type="Boolean" />
+    <Property Name="EVICTEE_CARD_NO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="ISMW" Type="Boolean" />
+    <Property Name="DISABILITY_TYPE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="NOMINEE_RELATIONSHIP_TYPE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="NOMINEE_RELATION_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="DOJ" Type="DateTime" Precision="0" />
+    <Property Name="PRESENT_ADRS" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="PERMANENT_ADRS" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="CITY" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="DISTRICT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STATE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="PINCODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MOBILE_NO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="WAGE_ABOVE_15000" Type="Boolean" />
+    <Property Name="PF_EARLIER_MEMBER" Type="Boolean" />
+    <Property Name="WAGE_ABOVE_21000" Type="Boolean" />
+    <Property Name="WC_POLICY_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WC_POLICY_FROM_DATE" Type="DateTime" Precision="3" />
+    <Property Name="WC_POLICY_TO_DATE" Type="DateTime" Precision="3" />
+    <Property Name="NO_COVERED_UNDER_WC_POLICY" Type="Int32" />
+    <Property Name="WORK_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EMP_TYPE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="MONTHLY_WAGES" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="ID_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AADHAR_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PHOTO" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="BANK_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BANK_BRANCH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BANK_ADDRESS" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="BANK_ACNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BANK_IFSC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BLACK_LISTED" Type="Boolean" />
+    <Property Name="BLACK_LISTED_REASON" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="BLACK_LISTED_DATE" Type="DateTime" Precision="0" />
+    <Property Name="REMARKS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="DECLARATION" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_ON" Type="DateTime" Precision="0" />
+    <Property Name="DELETED_BY" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="DELETED_ON" Type="DateTime" Precision="0" />
+    <Property Name="STATUS" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Contractor">
+    <Key>
+      <PropertyRef Name="VENDOR_CODE" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VENDOR_CODE" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="CONTRACTOR_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CONTRACTOR_ADDRESS" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="CITY" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="STATE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="PINCODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="PAN" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="GST" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="E_MAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MOBILE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="FAX" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="WHETHER_HAVING_ESI_CODE" Type="Boolean" />
+    <Property Name="ESI_ESTABLISHMENT_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WHETHER_HAVING_PF_ESTABLISHMENT_CODE" Type="Boolean" />
+    <Property Name="PF_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CST" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="CONTRACTOR_INCHARGE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DESIGNATION" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="CONT_INCHARGE_MOBILE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PHOTO" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="SIGNATURE" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="DEACTIVATED" Type="Boolean" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DELETED_BY" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="DELETED_ON" Type="DateTime" Precision="0" />
+    <Property Name="CONT_PREV_ID" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="ISTEMPID" Type="Boolean" />
+    <Property Name="SEC_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SUPERVISOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SUP_MOBILE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="SUP_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DECLARATION" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="Int32" />
+    <NavigationProperty Name="vendor_details" Relationship="CMSModel.FK_Contractor_vendor_details" FromRole="Contractor" ToRole="vendor_details" />
+  </EntityType>
+  <Association Name="FK_Contractor_vendor_details">
+    <End Type="CMSModel.vendor_details" Role="vendor_details" Multiplicity="1" />
+    <End Type="CMSModel.Contractor" Role="Contractor" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="vendor_details">
+        <PropertyRef Name="VENDOR_CODE" />
+      </Principal>
+      <Dependent Role="Contractor">
+        <PropertyRef Name="VENDOR_CODE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DocumentType">
+    <Key>
+      <PropertyRef Name="DocumentTypeId" />
+    </Key>
+    <Property Name="DocumentTypeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocumentTypeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Gate">
+    <Key>
+      <PropertyRef Name="GateId" />
+    </Key>
+    <Property Name="GateId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GateName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PassType">
+    <Key>
+      <PropertyRef Name="PassTypeId" />
+    </Key>
+    <Property Name="PassTypeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PassTypeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="DefaultPageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UserDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MobileNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="MenuId" />
+    </Key>
+    <Property Name="MenuId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MenuName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ParentId" Type="Int64" />
+    <Property Name="RoleId" Type="Int64" />
+    <Property Name="OrderId" Type="Int32" />
+    <Property Name="Icon" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="UserRoleId" />
+    </Key>
+    <Property Name="UserRoleId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="RoleId" Type="Int64" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+</Schema>

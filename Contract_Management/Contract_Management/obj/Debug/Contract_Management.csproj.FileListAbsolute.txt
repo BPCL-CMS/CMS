@@ -1,0 +1,159 @@
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\roslyn\csc.exe
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\roslyn\Microsoft.CodeAnalysis.dll
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\roslyn\Microsoft.CSharp.Core.targets
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\roslyn\Microsoft.VisualBasic.Core.targets
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\roslyn\System.Collections.Immutable.dll
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\roslyn\System.Reflection.Metadata.dll
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\roslyn\vbc.exe
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\roslyn\VBCSCompiler.exe
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\roslyn\VBCSCompiler.exe.config
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\Contract_Management.dll.config
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\Contract_Management.dll
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\Contract_Management.pdb
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\Bpcl.SmsPro.Delivery.dll
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\EntityFramework.dll
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\EntityFramework.SqlServer.dll
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\Microsoft.Web.Infrastructure.dll
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\Newtonsoft.Json.dll
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\System.Web.Helpers.dll
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\System.Web.Mvc.dll
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\System.Web.Razor.dll
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\System.Web.Webpages.Deployment.dll
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\System.Web.Webpages.dll
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\System.Web.Webpages.Razor.dll
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\EntityFramework.xml
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\EntityFramework.SqlServer.xml
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\Newtonsoft.Json.xml
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\System.Web.Razor.xml
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\System.Web.Webpages.xml
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\System.Web.Webpages.Deployment.xml
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\System.Web.Webpages.Razor.xml
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\System.Web.Helpers.xml
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\bin\System.Web.Mvc.xml
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\obj\Debug\Contract_Management.dll
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\obj\Debug\Contract_Management.pdb
+\\rfkrlcsqls2fs\cms$\CMS\Contract_Management\Contract_Management\obj\Debug\Contract_Management.csprojResolveAssemblyReference.cache
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\roslyn\csc.exe
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\roslyn\System.Collections.Immutable.dll
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\roslyn\System.Reflection.Metadata.dll
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\roslyn\vbc.exe
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\roslyn\VBCSCompiler.exe
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\roslyn\VBCSCompiler.exe.config
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\Contract_Management.dll.config
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\Contract_Management.dll
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\Contract_Management.pdb
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\Bpcl.SmsPro.Delivery.dll
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\EntityFramework.dll
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\EntityFramework.SqlServer.dll
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\Microsoft.Web.Infrastructure.dll
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\Newtonsoft.Json.dll
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\System.Web.Helpers.dll
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\System.Web.Mvc.dll
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\System.Web.Razor.dll
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\System.Web.Webpages.Deployment.dll
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\System.Web.Webpages.dll
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\System.Web.Webpages.Razor.dll
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\EntityFramework.xml
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\EntityFramework.SqlServer.xml
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\Newtonsoft.Json.xml
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\System.Web.Razor.xml
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\System.Web.Webpages.xml
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\System.Web.Webpages.Deployment.xml
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\System.Web.Webpages.Razor.xml
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\System.Web.Helpers.xml
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\bin\System.Web.Mvc.xml
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\obj\Debug\Contract_Management.csprojResolveAssemblyReference.cache
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\obj\Debug\Contract_Management.dll
+F:\Nithin M G\Projects\CMS\Contract_Management\Contract_Management\obj\Debug\Contract_Management.pdb
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\roslyn\csc.exe
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\roslyn\System.Collections.Immutable.dll
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\roslyn\System.Reflection.Metadata.dll
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\roslyn\vbc.exe
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\roslyn\VBCSCompiler.exe
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\roslyn\VBCSCompiler.exe.config
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\Contract_Management.dll.config
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\Contract_Management.dll
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\Contract_Management.pdb
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\Bpcl.SmsPro.Delivery.dll
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\EntityFramework.dll
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\EntityFramework.SqlServer.dll
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\Microsoft.Web.Infrastructure.dll
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\Newtonsoft.Json.dll
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\System.Web.Helpers.dll
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\System.Web.Mvc.dll
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\System.Web.Razor.dll
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\System.Web.Webpages.Deployment.dll
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\System.Web.Webpages.dll
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\System.Web.Webpages.Razor.dll
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\EntityFramework.xml
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\EntityFramework.SqlServer.xml
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\Newtonsoft.Json.xml
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\System.Web.Razor.xml
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\System.Web.Webpages.xml
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\System.Web.Webpages.Deployment.xml
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\System.Web.Webpages.Razor.xml
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\System.Web.Helpers.xml
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\bin\System.Web.Mvc.xml
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\obj\Debug\Contract_Management.dll
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\obj\Debug\Contract_Management.pdb
+F:\Nithin M G\Applications\cms\Contract_Management\Contract_Management\obj\Debug\Contract_Management.csprojResolveAssemblyReference.cache
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\roslyn\csc.exe
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\roslyn\System.Collections.Immutable.dll
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\roslyn\System.Reflection.Metadata.dll
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\roslyn\vbc.exe
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\roslyn\VBCSCompiler.exe
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\roslyn\VBCSCompiler.exe.config
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\Contract_Management.dll.config
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\Contract_Management.dll
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\Contract_Management.pdb
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\EntityFramework.dll
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\EntityFramework.SqlServer.dll
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\Microsoft.Web.Infrastructure.dll
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\Newtonsoft.Json.dll
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\System.Web.Helpers.dll
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\System.Web.Mvc.dll
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\System.Web.Razor.dll
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\System.Web.Webpages.Deployment.dll
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\System.Web.Webpages.dll
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\System.Web.Webpages.Razor.dll
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\EntityFramework.xml
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\EntityFramework.SqlServer.xml
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\Newtonsoft.Json.xml
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\System.Web.Razor.xml
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\System.Web.Webpages.xml
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\System.Web.Webpages.Deployment.xml
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\System.Web.Webpages.Razor.xml
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\System.Web.Helpers.xml
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\bin\System.Web.Mvc.xml
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\obj\Debug\Contract_Management.csprojResolveAssemblyReference.cache
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\obj\Debug\Contract_Management.dll
+D:\Vikram\Application\CMS\Contract_Management\Contract_Management\obj\Debug\Contract_Management.pdb
